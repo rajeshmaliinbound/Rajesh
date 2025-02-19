@@ -22,13 +22,24 @@ sort($array);
 echo "<br>List of Five lowest temperatures: ";
 for($i=0;$i<5;$i++)
 {
-    echo $array[$i]. ",";
+    if($i == 4)
+    {
+        echo "$array[$i]";
+    }else{
+        echo $array[$i]. ",";
+    }
 }
 
 echo "<br>list of five highest temperatures: ";
 for($i= $array_length-5; $i<$array_length; $i++)
 {
-    echo $array[$i]. ",";
+    if($i==$array_length-1)
+    {
+        echo $array[$i];
+    }else{
+        echo $array[$i]. ",";
+    }
+   
 }
 
 ?>
