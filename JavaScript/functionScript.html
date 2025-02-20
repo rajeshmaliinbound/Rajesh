@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+          function orangeColor(){
+            document.getElementById('fun').style.color='white';
+            document.getElementById('divfun').style.backgroundColor='black';
+          }
+
+          function redColor(){
+            document.getElementById('fun').style.color='red';
+            document.getElementById('divfun').style.backgroundColor='blue';
+          }
+
+          function greenColor(){
+            document.getElementById('fun').style.color='green';
+            document.getElementById('divfun').style.backgroundColor='pink';
+          }
+
+          function myFunction(){
+            document.getElementById('fun').style.color='black';
+            document.getElementById('divfun').style.backgroundColor='white';
+          }
+        </script>
+
+        <style>
+            #divfun{
+                width: 100px;
+                text-align: center;
+                padding: 30px;
+                margin: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="divfun">
+        <p id="fun">Javascript Function</p>
+        </div>
+        <p style="display: inline;">Click & change color: </p>
+        <button type="button" onclick="myFunction()">Original</button>
+        <button type="button" onclick="orangeColor()">Black & White</button>
+        <button type="button" onclick="redColor()">Blue & Red</button>
+        <button type="button" onclick="greenColor()">Pink & Green</button> 
+        
+    </body>
+</html>

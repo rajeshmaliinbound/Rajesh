@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <div id="first">
+            <p>First program of Javascript</p>
+        </div>
+
+        <div>
+            <p id="test"></p>
+        </div>
+
+        <div>
+            <p id="test2"></p>
+        </div>
+
+        <button type="button" onclick='myText()'>Get InnerText Value </button>
+        <button type="button" onclick='myHTML()'>Get InnerHTML Value </button>
+
+        <script>
+            function myText(){
+            var content = document.getElementById("first").innerText
+
+            document.getElementById("test").innerText = "<h1> value 1 : </h1>" +content;
+            }
+
+
+
+            function myHTML(){
+            var content2 = document.getElementById("first").innerHTML;
+            document.getElementById('test2').innerHTML = "Value 2 :" +content2;
+            }
+        </script>
+    </body>
+</html>
