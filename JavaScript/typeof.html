@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+
+    <body>
+        <h1>example of typeof</h1>
+        <div>          
+          <p id="string"></p>
+          <p id="BigInt"></p>
+          <p id="number"></p>
+          <p id="boolean"></p>
+          <p id="object"></p>
+          <p id="string"></p>
+        </div>
+
+
+        <script>
+             const costomer = {
+              Name : "Rajesh Kumar",
+              age  : 22,
+              address : "Odhav Ahmedabad"              
+            };
+
+            document.getElementById('number').innerHTML = "Datatype Name: " +typeof "typeof Javascript";
+
+            document.getElementById('BigInt').innerHTML = "Datatype Name: " +typeof BigInt("830280336207387228469237");
+            document.getElementById('number').innerHTML = "Datatype Name: " +typeof 8302803362 ;
+            document.getElementById('boolean').innerHTML = "Datatupe Name "  +typeof true;
+            document.getElementById('object').innerHTML = "Datatupe Name "  +typeof costomer;
+            document.getElementById('string').innerHTML = "Datatupe Name "  +typeof costomer.Name;
+            
+        </script>
+    </body>
+</html>

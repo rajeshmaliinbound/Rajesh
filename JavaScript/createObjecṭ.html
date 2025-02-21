@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h3>Create Object</h3>
+        <p id="object"></p>
+        <p id="Costomer"></p>
+        <p id="age"></p>
+        <script>
+            const costomer = {
+              Name : "Rajesh Kumar",
+              age  : 22,
+              address : "Odhav Ahmedabad"              
+            };
+
+            document.getElementById('object').innerHTML = costomer.Name + " from " +costomer.address;
+            document.getElementById('Costomer').innerText = "Costomer Name: " +costomer.Name;
+            document.getElementById('age').innerHTML = "Costomer age:" +costomer.age;
+        </script>
+    </body>
+</html>

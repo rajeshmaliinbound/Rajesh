@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+
+    <script>
+        function addition(x,y){
+            let result = x + y;
+           document.getElementById('Addition').innerHTML = "Addition of 100+21 =" +result;
+        }
+
+        function subtraction(x,y){
+            let result = x - y;
+            document.getElementById('Subtraction').innerHTML = "Subtraction of 100-21 =" +result;
+        }
+
+        function multiplication(x,y){
+            let result = x * y;
+            document.getElementById('Multiplication').innerHTML = "Multiplication of 100*21 =" +result;
+        }
+
+        function exponentiation(x,y){
+            let result = x ** y;
+            document.getElementById('Exponentiation').innerHTML = "Exponentiation of 100**2 =" +result;
+        }
+
+        function division(x,y){
+            let result = x / y;
+            document.getElementById('Division').innerHTML = "Division of 100/21 =" +result;
+        }
+
+        function modulus(x,y){
+            let result = x % y;
+            document.getElementById('modulus').innerHTML = "Modulus of 100%21 =" +result;
+        }
+
+
+        function increment(x){
+            x++;
+            let result = x;
+            document.getElementById('increment').innerHTML = "increment value of 101++:  =" +result;
+        }
+
+        function decrement(x){
+            x--;
+            let result = x;
+            document.getElementById('decrement').innerHTML = "decrement value of 101--: =" +result;
+        }
+    </script>
+
+    <body>
+        <h3>1.Operations Of Arithmetic Operators</h3>
+        <div>
+            <p id="Addition"></p>
+            <p id="Subtraction"></p>
+            <p id="Multiplication"></p>
+            <p id="Exponentiation"></p>
+            <p id="Division"></p>
+            <p id="modulus"></p>          
+        </div><br><br>
+
+        <div>
+            <h4 style="display: inline;">click on button and Operation of numbers 100 or 21 :</h4>
+           <button type="button" onclick="addition(100,21)">+</button>
+           <button type="button" onclick="subtraction(100,21)">-</button>
+           <button type="button" onclick="multiplication(100,21)">*</button>
+           <button type="button" onclick="exponentiation(100,2)">**</button>
+           <button type="button" onclick="division(100,21)">/</button>
+           <button type="button" onclick="modulus(100,21)">%</button><br><br>
+        </div>
+
+
+        <div>
+            <h3>2.Operations Of increment/Decrement Operators</h3>
+            <p id="increment"></p>
+            <p id="decrement"></p>  
+        </div>
+
+        <div>
+            <h4 style="display: inline;">click on button and Operation of Increment/Decrement with value of 101 :</h4>
+           <button type="button" onclick="increment(101)">++</button>
+           <button type="button" onclick="decrement(101)">--</button>
+        </div>
+    </body>
+</html>
