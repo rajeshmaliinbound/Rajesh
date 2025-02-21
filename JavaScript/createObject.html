@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div>
+            <p id="car"></p>
+            <p id="bike"></p>
+            <p id="train"></p>
+
+        </div>
+        
+        <script>
+            const car = {
+                Name:"BMW",
+                Model:"2020",
+                color:"yellow"
+            }
+
+            const bike = {
+                Name:"ZX10R",
+                Model:"2019",
+                color:"yellowgreen"
+            }
+
+            const train = {
+                Name:"METRO",
+                Model:"2022",
+                color:"White"
+            }
+
+            document.getElementById('car').innerHTML = "Car Name is: " +car.Name;
+            document.getElementById('bike').innerHTML = "bike Name is: " +bike.Name;
+            document.getElementById('train').innerHTML = "train Name is: " +train.Name;
+        </script>
+    </body>
+</html>
