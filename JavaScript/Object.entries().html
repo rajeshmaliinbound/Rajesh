@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Get Data Using Object.entries()</h1>
+    <p id="fruit"></p>
+    <script>
+        const fruits = {
+            Apple: 100,
+            Banana: 150,
+            Mango: 200,
+        }
+
+        value = "";
+
+        for(let [fruit, amount] of Object.entries(fruits)) {
+            value += fruit + ":" + amount + "<br>"
+        }
+
+        document.getElementById('fruit').innerHTML = value
+    </script>
+</body>
+</html>

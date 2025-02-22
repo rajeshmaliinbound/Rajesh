@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div>
+            <h2>Adding a Method to an Object</h2>
+            <p id="showdata"></p>
+        </div>
+        <script>
+            const myObject = {
+                firstName: "Rajesh",
+                LastName: "mali",
+                Fullname: function(){
+                     return this.firstName +" "  +this.LastName
+                },
+                
+            };            
+            document.getElementById('showdata').innerHTML = "My Fullname is: " +myObject.Fullname();
+            
+        </script>
+    </body>
+</html>

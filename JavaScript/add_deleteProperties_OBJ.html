@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+
+    <body>
+        <div>
+            <h2>Add and Delete Properties of Object</h2>
+            <p id="showdata"></p>
+            <p id="ADD"></p>
+            <p id="delete"></p>
+        </div>
+
+        <script>
+            const Student = {
+                Name: "Rajesh Mali",
+                Age: "21",
+                Mobile: "8302803362",
+            }
+
+            Student.RollNumber = "121";//add new Properties of Object
+
+            document.getElementById('showdata').innerHTML = "Student Name: " +Student.Name +"<br> Student Age: " +Student.Age + "<br>Student Mobile Number: " +Student.Mobile +"<br>roll number: " +Student.RollNumber
+
+            document.getElementById('ADD').innerHTML =  "Add new-> Student Roll Number: " +Student.RollNumber
+
+            delete Student.RollNumber; //delete Property of Student Object
+             
+             //delete property Output of Undefined
+            document.getElementById('delete').innerHTML = "Delete Student Roll Number: " +Student.RollNumber
+
+
+        </script>
+    </body>
+</html>

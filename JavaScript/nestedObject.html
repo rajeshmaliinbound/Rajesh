@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div>
+            <h1>Example Of nested Object</h1>
+                <p id="ShowData"></p>
+                <p id="nestedObject"></p>
+        </div>
+
+      <script>
+        const Obj_1 = {   // Object 1 
+            Name: "Rajesh Mali",
+            Age: "35",
+          Obj_2: {    // Object 2 is Nested Object
+            car1: "BMW",
+            car2: "Lemborghini",
+            car3: "Marchdish"
+          }
+        }
+
+        document.getElementById('ShowData').innerHTML = "Name: " +Obj_1.Name + "<br> Age: " +Obj_1.Age 
+
+        //Access and display Nested Object 
+        document.getElementById('nestedObject').innerHTML = "Car-1: " +Obj_1.Obj_2.car1  +"<br> Car-2: " +Obj_1.Obj_2.car2  +"<br> Car-3: " +Obj_1.Obj_2.car3
+      </script>
+    </body>
+</html>

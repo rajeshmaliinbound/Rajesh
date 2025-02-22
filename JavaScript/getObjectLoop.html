@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Objects</h1>
+<h2>Display Properties</h2>
+
+<p id="demo"></p>
+
+<script>
+
+const car = {
+  name: "Thar",
+  Model: "Mahindra2020",
+  color: "Black"
+};
+
+
+let value = "";
+for (let x in car) {
+    value += car[x] + "&nbsp ";
+};
+document.getElementById('demo').innerHTML = value
+</script>
+
+</body>
+</html>
