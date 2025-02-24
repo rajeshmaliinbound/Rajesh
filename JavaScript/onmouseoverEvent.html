@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- onmouseover / onmouseout Event -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 50px; letter-spacing: 10px; margin-left: 200px;">onmouseover / onmouseout Event</h1>
+    <div style="display: flex; margin: 200px; height: 100%; width: 100%; text-align: center; justify-content: space-between;">
+        <div style="text-align: center;">
+            <img id="image" onmouseover="bigimage(this)" onmouseout="normalimage(this)" src="https://www.w3schools.com/Jsref/smiley.gif" alt="no profile" >
+        </div>
+        <div style="text-align: center;">
+            <img id="image" onmouseover="bigimage(this)" onmouseout="normalimage(this)" src="https://www.w3schools.com/Jsref/smiley.gif" alt="no profile" >
+        </div>
+        <div style="text-align: center;">
+            <img id="image" onmouseover="bigimage(this)" onmouseout="normalimage(this)" src="https://www.w3schools.com/Jsref/smiley.gif" alt="no profile" >
+        </div>
+        <div style="text-align: center;">
+            <img id="image" onmouseover="bigimage(this)" onmouseout="normalimage(this)" src="https://www.w3schools.com/Jsref/smiley.gif" alt="no profile" >
+        </div>
+        <div style="text-align: center;">
+            <img id="image" onmouseover="bigimage(this)" onmouseout="normalimage(this)" src="https://www.w3schools.com/Jsref/smiley.gif" alt="no profile" >
+        </div>
+</div>
+
+
+    <script>
+     function bigimage(value){
+        value.style.width="100px";
+        value.style.height= "100px";
+     }
+
+     function normalimage(value){
+        value.style.width="40px";
+        value.style.height="40px";
+     } 
+    </script>
+
+
+</body>
+</html>
