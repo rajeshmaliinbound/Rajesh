@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="script.js"></script>
+</head>
+<body>
+    <h3>Enter Student Details</h3>
+    <form action="">
+        <label> First Name: </label>
+        <input type="text" name="firstname" id="getfirstname" placeholder="Enter Firstname"><br><br>
+
+        <label>Last Name: </label>
+        <input type="text" name="lastname" id="getlastname" placeholder="Enter Lastname"><br><br>
+
+        <label> AGE: </label>
+        <input type="text" name="age" id="getage" placeholder="Enter your age"><br><br>
+        
+        <label> Gender: </label>
+        <input type="radio" name="gender" value="male" id="getgender">Male
+        <input type="radio" name="gender" value="male" id="getgender">Female<br><br>
+
+
+        <button type="button" onclick="showAll()">Show All</button>
+        <button type="button" onclick="showName()">Name</button>
+        <button type="button" onclick="showAge()">Age</button>
+        <button type="button" onclick="showGender()">Gender</button>
+        <button type="reset" value="refresh">Refresh Form</button>
+    </form>
+
+    <div>
+        <p id="StudentName"></p>
+        <p id="StudentAge"></p>
+        <p id="StudentGender"></p>
+    </div>
+</body>
+</html>

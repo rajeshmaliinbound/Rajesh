@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div>
+    <p id="details"></p>
+   </div>
+
+    <script>
+        //Constructor 
+        function Person(FirstName, LastName, age, mobile, gender){
+
+            this.firstname = FirstName;
+            this.lastname = LastName;
+            this.Fullname = function(){
+                return this.firstname +" " +this.lastname;
+            }
+
+            this.Age = age;
+            this.Mobile = mobile;
+            this.Gender = gender;
+            this.Email = "rajeshk67003@gmail.com";//add new Data in constructor
+        }
+
+
+        const myDetails = new Person("Rajesh", "Mali", "22", "8302903362", "Male");
+
+        document.getElementById("details").innerHTML = "Name: " +myDetails.Fullname() +"<br>" +"Age: " +myDetails.Age +"<br>" +"Mobile Number: " +myDetails.Mobile  +"<br>" +"Gender: " +myDetails.Gender +"<br>" +"Email Id: " +myDetails.Email
+
+
+
+    </script>
+
+ </body>
+</html>

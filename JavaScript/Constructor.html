@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="CarDetails"></p>
+    <p id="carCLR"></p>
+
+    <script>
+        //Constructor 
+        function Person(CarName, Model, number, Color){
+
+            this.carname = CarName;
+            this.carModel = Model;
+            this.carNumber = number;
+            this.carColor = Color;
+        }
+
+
+        const carDetails = new Person("Porche Spider", "PS2025", "RJ-24-TA-1779", "Blue");
+
+        document.getElementById("CarDetails").innerHTML = "Car Name: " +carDetails.carname +"<br>" +"Car Model: "
+        +carDetails.carModel +"<br>" +"Car Number: " +carDetails.carNumber +"<br>" +"Car Color: " +carDetails.carColor  
+
+
+
+    </script>
+
+ </body>
+</html>

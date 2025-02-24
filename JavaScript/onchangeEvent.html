@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div>
+    <h3>Select a new from the List</h3>
+
+    <select name="" id="Items" onchange="onChange()">
+        <option value="" selected disabled>open</option>
+        <option value="Audi">Audi</option>
+        <option value="BMW">BMW</option>
+        <option value="Mercedes">Mercedes</option>
+        <option value="Volvo">Volvo</option>
+        <option value="Lemborghini">Lemborghini</option>
+    </select>
+    <select name="" id="Items2" onchange="onChange()">
+        <option value="" selected disabled>open</option>
+        <option value="Audi2">Audi</option>
+        <option value="BMW2">BMW</option>
+        <option value="Mercedes2">Mercedes</option>
+        <option value="Volvo2">Volvo</option>
+        <option value="Lemborghini2">Lemborghini</option>
+    </select><br><br>
+
+    <span id="Event"></span> 
+    <span id="Event2"></span>
+   </div>
+
+   <script>
+    function onChange(){
+        let Data = document.getElementById("Items").value;
+        let Data2 = document.getElementById("Items2").value;
+        document.getElementById("Event").innerHTML = "Event1: " +Data
+        document.getElementById("Event2").innerHTML = " " +"Event2" +Data2
+    }
+   </script>
+</body>
+</html>
