@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div style="text-align: center;">
+
+      <h1>onloadeddata Event Perform</h1>
+      <video style="position: relative;" controls src="mov_bbb.mp4" type="video/mp4" onloadeddata="videoFunction()">
+        <source src="mov_bbb.mp4" type="video/mp4">
+        <source src="mov_bbb.ogg" type="video/ogg">
+        This Browser does not supporte HTML5 video 
+      </video>
+      <p id="video"></p>
+    </div>
+
+    <p id="video"></p>
+
+    <script>
+       document.getElementById("video").innerHTML = "Loaded"
+    </script>
+
+</body> 
+</html>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center;">
+       <h2>onmouseover/onmouseout Events</h2>
+
+       <div style="text-align: center; background-color: red; margin: 20px 500px 20px 500px;">
+           <p onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" style="padding: 50px; cursor: pointer; font-size: 25px;">See Name</p>
+       </div>
+    </div>
+
+    <script>
+        function mouseOver(obj){
+            obj.innerHTML = "Rajesh Mali";
+        }
+
+        function mouseOut(obj){
+            obj.innerHTML = "See Name";
+        }
+    </script>
+
+</body>
+</html>

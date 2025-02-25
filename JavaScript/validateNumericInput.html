@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script>
+        function checkValue(){
+        let Data = document.getElementById("numeric").value 
+        let newData;
+
+        if(Data>=1 && Data<=10){
+            newData = "Input Valid";
+            document.getElementById("validData").innerHTML = newData        
+        }else{
+            newData = "Input Invalid";
+            document.getElementById("invalidData").innerHTML = newData
+        }
+
+
+        let Even = document.getElementById("even").value
+
+        if(Even%2==0){
+             evenData = "Valid(even Input)";
+             document.getElementById("evenDATA").innerHTML = evenData;
+        }else{
+
+            evenData = "Invalid(Odd Data)";
+            document.getElementById("oddDATA").innerHTML = evenData;
+
+                 }
+
+        }
+
+        function validateForm(){
+            let NumberData = document.forms["FormData"]["number"].value 
+            let EvenOddData = document.forms["FormData"]["EvenOdd"].value
+            
+             if(NumberData == "")
+             {
+                document.getElementById("Nvalid").innerHTML = "<p>this field is require</p>"
+                return false
+             }
+
+             if(EvenOddData == "")
+             {
+                document.getElementById("EOvalid").innerHTML = "<p>this field is require</p>"
+                return false
+             }
+        }
+    </script>   
+
+
+</head>
+<body>
+    <div style="text-align: center;">
+
+        <form onsubmit="return validateForm()" name="FormData" action="" method="post">
+        <h1>Please input a number between 1 to 10:</h1>
+        <label>Enter 1 to 10: </label>
+        <input type="" id="numeric" name="number"><br><br>
+        <span style="color: red; margin-left: 30px;" id="Nvalid"></span><br>
+
+        <p id="validData" style="color: green;"></p>
+        <p id="invalidData" style="color: red;"></p>
+
+
+        <label>Enter even No: </label>
+        <input type="" id="even" name="EvenOdd"><br>
+        <span style="color: red; margin-left: 30px;" id="EOvalid"></span><br>
+        <p id="evenDATA" style="color: green;"></p>
+        <p id="oddDATA" style="color: red;"></p>
+
+       
+        <button type="button" value="submit" onclick="checkValue() ">Submit</button>
+        </form>       
+        
+    </div>
+</body>
+</html>

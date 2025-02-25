@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Input field in Uppercase/LowerCase</h2>
+         <input type="text" id="input" placeholder="Enter Your Name" oninput="inputUpper()">
+         <input type="email" id="email" placeholder="Enter Your Email" oninput="inputLower()">
+    </div>
+
+    <script>
+     function inputUpper(){
+        let data = document.getElementById("input");
+        data.value = data.value.toUpperCase();
+     }
+
+     function inputLower(){
+        let data = document.getElementById("email");
+        data.value = data.value.toLowerCase();
+     }
+
+    </script>
+</body>
+</html>

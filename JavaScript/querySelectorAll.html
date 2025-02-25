@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Finding HTML element by Query Selector</p>
+    <p id="dataID">querySelectorAll Example</p>
+    <p id="dataID">Javascript querySelectorAll</p>
+
+    <div>
+        <p id="newData"></p>
+    </div>
+     
+
+    <script>
+        let data = document.querySelectorAll("p.dataID"); 
+        document.getElementById("newData").innerHTML = "class(newData)items is: " +data[0].innerHTML;
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function validateForm(){
+            let Data = document.forms["Myform"]["fname"].value 
+             if(Data == "")
+             {
+                document.getElementById("valid").innerHTML = "<p>this field is require</p>"
+                return false
+             }
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h1>Field Require validation</h1>
+
+        <form name="Myform" method="post" action="#" onsubmit="return validateForm()">
+            <label for=""> Enter Name: </label>
+             <input type="text" name="fname" placeholder="Enter Name">
+             <span style="color: red; margin-left: 30px;" id="valid"></span><br>
+             <button type="submit">submit</button>
+        </form>
+
+    </div>
+</body>
+</html>

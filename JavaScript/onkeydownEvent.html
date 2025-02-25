@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        <div style="text-align: center; margin-top: 20%;">
+            <h2>Enter any key in input field for perform onkeydown Event</h2>
+            <input id="input" type="text" placeholder="Enter any Key" onkeydown="newFunction()">
+            <p id="Data"></p>
+        </div>
+    </div>
+
+    <script>
+        function newFunction(){
+          document.getElementById("Data").innerHTML = "onkeydown Event Perform Successfuly"
+        }
+    </script>
+</body>
+</html>
