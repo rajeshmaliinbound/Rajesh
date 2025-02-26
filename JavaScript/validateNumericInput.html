@@ -4,78 +4,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-
     <script>
-        function checkValue(){
-        let Data = document.getElementById("numeric").value 
-        let newData;
-
-        if(Data>=1 && Data<=10){
-            newData = "Input Valid";
-            document.getElementById("validData").innerHTML = newData        
-        }else{
-            newData = "Input Invalid";
-            document.getElementById("invalidData").innerHTML = newData
-        }
-
-
-        let Even = document.getElementById("even").value
-
-        if(Even%2==0){
-             evenData = "Valid(even Input)";
-             document.getElementById("evenDATA").innerHTML = evenData;
-        }else{
-
-            evenData = "Invalid(Odd Data)";
-            document.getElementById("oddDATA").innerHTML = evenData;
-
-                 }
-
-        }
-
         function validateForm(){
-            let NumberData = document.forms["FormData"]["number"].value 
-            let EvenOddData = document.forms["FormData"]["EvenOdd"].value
-            
-             if(NumberData == "")
+            let Data = document.forms["Myform"]["fname"].value 
+            let Data1 = document.forms["Myform"]["even"].value
+
+            if(Data == "" || Data1 == "")
              {
-                document.getElementById("Nvalid").innerHTML = "<p>this field is require</p>"
-                return false
+
+                if(Data == "")
+                {
+                    document.getElementById("Validation").innerHTML = "<p>This field is require</p>"  
+                } 
+
+
+                if(Data1 == "")
+                {
+                    document.getElementById("Validation2").innerHTML = "<p>This field is require</p>"  
+                } 
+
+
+                var sheet = document.createElement('style')
+                sheet.innerHTML = "p{color:red;}";
+                document.body.appendChild(sheet); 
+                
+                return false 
+
+
+
+             }
+             else
+             {
+
+                if(Data>=0 && Data<=10)
+                {
+                    document.getElementById("Validation").innerHTML = "<h5>Valid Input: " +Data +"</h5>"                                   
+                }
+              else
+                {
+                    document.getElementById("Validation").innerHTML = "<p>Invalid Input: " +Data +" (Refresh page and Enter Valid Input)" +"</p>" 
+                    var sheet = document.createElement('style')
+                    sheet.innerHTML = "p{color:red;}";
+                    document.body.appendChild(sheet);
+                               
+                }
+
+
+
+
+                if(Data1==0 || Data1%2==0)
+                {
+                  document.getElementById("Validation2").innerHTML = "<h5>Input is Even: " +Data1 +"</h5>"
+                  var sheet = document.createElement('style')
+                  sheet.innerHTML = "h5{color:green;}";
+                  document.body.appendChild(sheet);
+                }else{
+                    document.getElementById("Validation2").innerHTML = "<p>Invalid (Input is Odd): " +Data1 +" (Refresh page and Enter Even Input)" +"</p>" 
+                    var sheet = document.createElement('style')
+                    sheet.innerHTML = "p{color:red;}";
+                    document.body.appendChild(sheet);  
+                }
+
+                return false  
+
+
              }
 
-             if(EvenOddData == "")
-             {
-                document.getElementById("EOvalid").innerHTML = "<p>this field is require</p>"
-                return false
-             }
         }
-    </script>   
-
-
+    </script>
+    <style>
+        h5{
+            color: green;
+        }
+    </style>
 </head>
 <body>
     <div style="text-align: center;">
+        <h1>Validation :</h1>
 
-        <form onsubmit="return validateForm()" name="FormData" action="" method="post">
-        <h1>Please input a number between 1 to 10:</h1>
-        <label>Enter 1 to 10: </label>
-        <input type="" id="numeric" name="number"><br><br>
-        <span style="color: red; margin-left: 30px;" id="Nvalid"></span><br>
+        <form name="Myform" method="post" action="" onsubmit="return validateForm()">
+            <label for=""> Enter Digit: </label>
+            <input type="number" name="fname" placeholder="Enter digit 0-10"><br>
+            
+             <span style="margin-left: 30px;" id="Validation"></span><br>
 
-        <p id="validData" style="color: green;"></p>
-        <p id="invalidData" style="color: red;"></p>
+             <label>Enter Even Digit:</label>
+             <input type="number" id="EvenValue" name="even" placeholder="Enter any even Value"><br>
+             <span style="margin-left: 30px;" id="Validation2"></span><br>
 
+             <button type="submit">submit</button>
+        </form>
 
-        <label>Enter even No: </label>
-        <input type="" id="even" name="EvenOdd"><br>
-        <span style="color: red; margin-left: 30px;" id="EOvalid"></span><br>
-        <p id="evenDATA" style="color: green;"></p>
-        <p id="oddDATA" style="color: red;"></p>
-
-       
-        <button type="button" value="submit" onclick="checkValue() ">Submit</button>
-        </form>       
-        
     </div>
 </body>
 </html>

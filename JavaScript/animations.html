@@ -1,0 +1,121 @@
+<!Doctype html>
+<html>
+    <head>
+    <style>
+    
+    #container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    background: white;
+    border: 2px solid Gray;
+    }
+
+
+    #animate {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background: black;
+    }
+
+    #animate2 {
+    width: 50px;
+    height: 50px;
+    left: 350px;
+    top: 350px;
+    position: absolute;
+    background: black;
+    }
+
+
+    </style>
+    <body>
+
+    <div class="main">
+
+        <h2>Animations(setInterval/clearInterval)</h2>
+
+        <div id="container">
+            <div id="animate"></div>
+            <div id="animate2"></div>
+       </div>
+
+       <button style="margin-left: 175px; margin-top: 10px;" onclick="moveAnimate()">Start</button>
+    </div>
+
+    <script>
+//Get First animate.......................................................................................
+        let leftpost = 0;
+        let toppos = 0;
+        let Rightpos = 350;
+        let buttompos = 350;
+        function moveAnimate()
+        {
+           let id = null;
+           const element = document.getElementById("animate")
+           clearInterval(id)
+           id = setInterval(frame,2);
+            function frame()
+            {
+                if(leftpost == 350)
+                {
+                  clearInterval(id);
+                  id = setInterval(top,2)
+                   function top()
+                   {
+                       if(toppos == 350)
+                       {
+                         clearInterval(id);
+                        }
+                        else
+                        {
+                          toppos++;
+                          element.style.top = toppos +"px";
+                        }
+                    }
+                }
+                else
+                {
+                    leftpost++;
+                    element.style.left = leftpost +"px";
+                }
+           }
+          
+
+//Get First animate.......................................................................................
+           let SID = null;
+           const element2 = document.getElementById("animate2")
+           clearInterval(SID);
+           SID = setInterval(right,2)
+            function right()
+            {
+                if(Rightpos == 0)
+                {
+                  clearInterval(SID);
+                  SID = setInterval(buttom,2)
+                   function buttom()
+                   {
+                        if(buttompos == 0)
+                        {
+                          clearInterval(SID)                        
+                        }
+                        else
+                        {
+                            buttompos--;
+                            element2.style.top = buttompos +"px"
+                        }
+                   }
+                }
+                else
+                {
+                  Rightpos--;
+                  element2.style.left = Rightpos +"px"
+                }
+            }
+        } 
+
+    </script>
+
+    </body>
+</html>
