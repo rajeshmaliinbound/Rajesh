@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div>
+        <h3>Example of addEventListener()</h3>
+        <button id="Event">Click</button>
+    </div>
+
+    <div id="Question1">
+    </div>
+
+    <script>
+        let Value = document.getElementById("Event")
+        Value.addEventListener("click", firstFun)
+ 
+ 
+        function firstFun(){
+         document.getElementById("Question1").innerHTML = "<p>This Example of addEventListerner()</p>";
+        }
+     </script>
+</body>
+</html>

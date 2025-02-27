@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form action="">
+            <h2>Use of charAT() String Method</h2>
+            <p>The charAt() method returns the character at a specified index (position) in a string:</p>
+            <input type="text" id="Stringvalue" placeholder="Enter Any Value">
+            <button type="button" onclick="stringCharAT()">click</button>
+        </form>
+        <p id="Output"></p>
+    </div>
+
+    <script>
+        function stringCharAT(){
+            let Data = document.getElementById("Stringvalue").value;
+            document.getElementById("Output").innerHTML = Data.charAt(4);
+        }
+    </script>
+</body>
+</html>

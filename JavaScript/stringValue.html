@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>String in javascript</h2>
+        <p id="string"></p>
+        <button type="button" onclick="StringValue()">Show String Values</button>
+    </div>
+
+    <script>
+        let string1 = "This is a first String Value";
+        let string2 = "This is a second 'String' Value";
+        let string3 = 'This is a Third "String" Value';
+        function StringValue(){
+            document.getElementById("string").innerHTML = "All String Values:<br><br>" +string1 +"<br>" +string2 +"<br>" +string3;
+        }
+    </script>
+</body>
+</html>

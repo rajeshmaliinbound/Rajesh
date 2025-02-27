@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h2>This example of EventListener with mouseover,mouseout and click</h2>
+        <button id="EventListener">try now</button>
+    </div>
+
+    <div style="text-align: center;">
+        <p id="EventListenerPerform"></p>
+    </div>
+
+   <script>
+    var ID = document.getElementById("EventListener");
+    ID.addEventListener("mouseover", OverFunction);
+    ID.addEventListener("click", clickFunction);
+    ID.addEventListener("mouseout", outFunction);
+
+    function OverFunction(){
+        document.getElementById("EventListenerPerform").innerHTML += "MouseOver!<br>";
+    }
+
+    function clickFunction(){
+        document.getElementById("EventListenerPerform").innerHTML += "Clicked!<br>";
+    }
+
+    function outFunction(){
+        document.getElementById("EventListenerPerform").innerHTML += "MouseOut!<br>"
+    }
+   </script>
+</body>
+</html>

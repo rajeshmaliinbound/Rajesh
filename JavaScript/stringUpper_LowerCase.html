@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Example of string toUpperCase() & toLowerCase()</h2>
+        <form action="">
+            <input type="text" id="input" placeholder="Enter any value">
+            <button type="button" onclick="toUpperCase()">toUpperCase</button>
+            <button type="button" onclick="toLowerCase()">toLowerCase</button>
+        </form>
+
+        <p id="uppercase"></p>
+        <p id="lowercase"></p>
+    </div>
+
+    <script>
+        function toUpperCase(){
+            let Data = document.getElementById("input").value 
+            document.getElementById("uppercase").innerHTML = Data.toUpperCase()
+        }
+
+       function toLowerCase(){
+        let Data = document.getElementById("input").value
+        document.getElementById("lowercase").innerHTML = Data.toLowerCase()
+       }
+       
+    </script>
+</body>
+</html>

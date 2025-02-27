@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Extracting String Prats</h2>
+        <p>Example of String: slice(),substring(),substr()</p>
+        <form action="">
+            <input type="text" id="StringValue" placeholder="Enter Any Value">
+            <button onclick="sliceFunction()">slice</button>
+            <button onclick="substringfunction()">substring</button>
+            <button onclick="substrFunction()">substr</button>
+            <button type="button" onclick="newFunction()">input</button>
+        </form>
+        <p id=""></p>
+    </div>
+
+    <script>
+        function sliceFunction(){
+            let Data = document.getElementById("StringValue").value 
+            document.getElementById("slice").innerHTML = Data.slice(0,6);
+        }
+    </script>
+</body>
+</html>

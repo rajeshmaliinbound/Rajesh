@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form action="">
+        <h1>Count String lengh</h1>
+        <input type="text" id="Stringvalue" placeholder="Enter any Value">
+        <button type="button" onclick="lengthFunction()">See length</button>
+        </form>
+
+        <p id="lenght"></p>
+    </div>
+    
+    <script>
+      function lengthFunction(){
+         let Data = document.getElementById("Stringvalue").value;
+         document.getElementById("lenght").innerHTML = "your Input Data lenght is: " +Data.length;
+      }
+    </script>
+</body>
+</html>

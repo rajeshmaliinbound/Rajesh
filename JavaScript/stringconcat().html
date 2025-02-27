@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>String Concat Value Using concat() this method</h2>
+        <form action="">
+            <input type="text" id="input" placeholder="Enter Value 1"><br><br>
+            <input type="text" id="input2" placeholder="Enter  Value 2"><br><br>
+            <button type="button" onclick="clickBTN()">Concat</button>
+        </form>
+
+        <p id="showValue"></p>
+
+        <script>
+            function clickBTN(){
+                let Value = document.getElementById("input").value
+                let index = document.getElementById("input2").value
+
+                let Concat = Value.concat(" ", index);
+
+                document.getElementById("showValue").innerHTML = "Concat Value is: " +Concat;
+            }
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Properties Access of String Value</h2>
+        <form action="">
+            <input type="text" id="input" placeholder="Enter Any Value"><br><br>
+            <input type="text" id="input2" placeholder="Enter Index Number">
+            <button type="button" onclick="clickBTN()">Show Inadex Value</button>
+        </form>
+
+        <p id="showValue"></p>
+        <p id="showValue2"></p>
+
+        <script>
+            function clickBTN(){
+                let Value = document.getElementById("input").value
+                let index = document.getElementById("input2").value
+
+                document.getElementById("showValue").innerHTML = "Value is: " +Value;
+                document.getElementById("showValue2").innerHTML = "find Index Value is: " +Value[index];
+            }
+        </script>
+    </div>
+</body>
+</html>
