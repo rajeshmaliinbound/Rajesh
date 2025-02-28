@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Example of Number.isInteger() and Number.isSafeInteger()</h2>
+        <p id="isINT"></p>
+        <p id="isINT2"></p>
+    </div>
+
+    <script>
+         
+        let idint = Number.isInteger(15);
+        document.getElementById("isINT").innerHTML = "check 15 number with Number.isInteger(): " +idint;
+        
+        let deci = Number.isInteger(15.5);
+        document.getElementById("isINT2").innerHTML = "check 15.5 number with Number.isInteger(): " +idint;
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Check if a string startsWith() and endsWith() Method :</h2>
+    <p id="Data">Hello world, welcome to the universe.</p>
+    <p id="startsWith"></p>
+    <p id="endsWith"></p>
+
+    <script>
+        let Value = document.getElementById("Data").innerHTML;
+        let Result = Value.startsWith("Hello");
+        let endsWith = Value.endsWith(".");
+        document.getElementById("startsWith").innerHTML = "startsWith() method Result: " +Result;
+        document.getElementById("endsWith").innerHTML = "endsWith() Result is: " +endsWith;
+    </script>
+</body>
+</html>

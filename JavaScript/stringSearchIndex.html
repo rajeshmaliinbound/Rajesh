@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of indexOf() and lastindexOf()</h2>
+    <p id="Data">Please locate where 'locate' occurs!</p>
+    <p id="index"></p>
+    <p id="index2"></p>
+
+    <script>
+        let Value = document.getElementById("Data").innerHTML;
+        let index = Value.indexOf("locate");
+        let index2 = Value.lastIndexOf("locate");
+        document.getElementById("index").innerHTML = index;
+        document.getElementById("index2").innerHTML = index2;
+    </script>
+
+</body>
+</html>

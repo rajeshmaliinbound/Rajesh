@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="paragraph">I love cats. Cats are very easy to love. Cats are very popular.</p>
+    <p id="replace"></p>
+
+    <script>
+       let Data = document.getElementById("paragraph").innerHTML;
+       Data = Data.replaceAll("cats", "dogs");
+       Data = Data.replaceAll("Cats", "Dogs");
+
+       document.getElementById("replace").innerHTML = Data;
+    </script>
+</body>
+</html>

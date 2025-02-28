@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Example of replace() method of string</h2>
+        <p id="Value"></p>
+        <p id="string">Learning Javascript</p>
+    </div>
+    
+    <script>
+        let Value = document.getElementById("string").innerHTML;
+        document.getElementById("Value").innerHTML  = "String Value: " +Value;
+        document.getElementById("string").innerHTML = "Replace Value Result : " +Value.replace("Javascript", "PHP");
+    </script>
+</body>
+</html>

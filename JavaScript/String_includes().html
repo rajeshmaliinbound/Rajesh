@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Check if a string includes "world":</h2>
+    <p id="Data">Hello world, welcome to the universe.</p>
+    <p id="result"></p>
+
+    <script>
+        let Value = document.getElementById("Data").innerHTML
+        let Result = Value.includes("welcome");
+        document.getElementById("result").innerHTML = Result;
+    </script>
+</body>
+</html>

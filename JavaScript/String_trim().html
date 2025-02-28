@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of trim(), trimStart() ortrimEnd() Method of string</h2>
+    <div></div>
+
+    <h3>Example of trim()-> remove whitespace of string form both side</h3>
+    <p id="trim"></p>
+
+    <h3>Example of trimStart()-> remove whitespace of string form start side</h3>
+    <p id="trimstart"></p>
+
+    <h3>Example of trimEnd() remove whitespace of string form End side</h3>
+    <p id="trimend"></p>
+
+    <script>
+        let Value = "       Rajesh Kumar Mali        ";
+        let trim = Value.trim();
+        let trimstart = Value.trimStart();
+        let trimend = Value.trimEnd();
+
+        document.getElementById("trim").innerHTML = trim;
+        document.getElementById("trimstart").innerHTML = trimstart;
+        document.getElementById("trimend").innerHTML = trimend;
+    </script>
+</body>
+</html>

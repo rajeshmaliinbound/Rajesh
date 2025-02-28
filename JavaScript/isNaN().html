@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Use of isNaN() method used for find out if a value is not a number</h2>
+    <p id="result"></p>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <script>
+        let Value = 100 / "Rajesh";
+        document.getElementById("result").innerHTML = "Result is: " +Value; //Result is NaN (Not a Number)
+        document.getElementById("result1").innerHTML = "Datatype of NaN: " +typeof(Value);//.....................
+        document.getElementById("result2").innerHTML = "isNan() Result is: " +isNaN(Value);
+    </script>
+</body>
+</html>

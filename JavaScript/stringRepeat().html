@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center;">
+    <h1>Example of string repeat() method</h1>
+    <form action="">
+        <input type="text" id="input" placeholder="Enter Any Value">
+        <input type="text" id="input2" placeholder="Enter Repeat digit">
+        <button type="button" onclick="repeatMethod()">Run</button>
+    </form>
+</div>
+<p id="Data"></p>
+<script>
+    function repeatMethod(){
+        let String = document.getElementById("input").value
+        let editString = innerHTML = String +"<br>";
+        let digit = document.getElementById("input2").value
+        let repeat = editString.repeat(digit)
+        document.getElementById("Data").innerHTML = repeat;
+    }
+</script>
+</body>
+</html>
