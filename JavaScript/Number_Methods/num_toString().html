@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of toString() number method</h2>
+    <p id="type1"></p>
+    <p id="result"></p>
+    <p id="type"></p>
+    <script>
+        let num = 276;
+        let typenum = typeof(num);
+        let string = num.toString();
+        let type = typeof(string);
+        document.getElementById("type1").innerHTML = "typeof before use toString() : " +typenum;
+        document.getElementById("result").innerHTML = "number to String toString() Result is: " +string;
+        document.getElementById("type").innerHTML = "typeof after use toString() : " +type;
+    </script>
+</body>
+</html>

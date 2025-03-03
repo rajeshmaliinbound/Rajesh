@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of Number() method</h2>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <p id="result3"></p>
+
+    <script>
+        let num = "5436";
+        let result1 = typeof(num);
+        let result2 = Number(num);
+        let result3 = typeof(num);
+
+        document.getElementById("result1").innerHTML = "before type Result is: " +result1;
+
+        document.getElementById("result2").innerHTML = "before type Result is: " +result2;
+
+        document.getElementById("result2").innerHTML = "after type Result is: " +result3;
+    </script>
+</body>
+</html>
