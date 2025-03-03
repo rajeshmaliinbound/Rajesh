@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Converting Array to string</h3>
+    <p id="result"></p>
+    <p id="type"></p>
+    <p id="convert"></p>
+    <p id="type1"></p>
+    <script>
+        let Animals = ["horse", "donkey", "monkey", "Dog", "Cat", "Elephant"];
+        document.getElementById("result").innerHTML = "Array Value is: " +Animals;
+        let type = typeof(Animals);
+        let convert = Animals.toString();
+        let type1 = typeof(convert);
+
+        document.getElementById("type").innerHTML = "type of Array Value: " +type;
+        document.getElementById("convert").innerHTML = "array to String Convert Value: " +convert;        
+        document.getElementById("type1").innerHTML = "type of after array to string convert: " +type1;
+    </script>
+</body>
+</html>

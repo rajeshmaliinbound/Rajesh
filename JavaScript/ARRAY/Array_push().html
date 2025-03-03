@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Addind Array using push()</h3>
+    <p id="result"></p>
+    <p id="length"></p>
+
+    <form action="">
+        <label>Add New fruit:</label>
+        <input type="text" placeholder="Enter fruit" id="fruteID">
+        <button type="button" onclick="formFunction()">Add</button>
+    </form>
+
+    <script>
+
+        function formFunction(){
+            let fromData = document.getElementById("fruteID").value;
+            fruits.push(fromData);
+            document.getElementById("result").innerHTML = "Array Values: " +fruits;
+
+            len = fruits.length;
+            document.getElementById("length").innerHTML = "Array Length is: " +len
+        }
+
+        const fruits = ["Banana", "Orange", "Apple", "Mango"];
+        document.getElementById("result").innerHTML = "Array Values: " +fruits;
+        let len = fruits.length;
+        document.getElementById("length").innerHTML = "Array Length is: " +len
+    </script>
+</body>
+</html>
