@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of Concat Two Array</h2>
+    <p id="ft1"></p>
+    <p id="ft2"></p>
+    <p id="concate"></p>
+
+    <script>
+        let fruit1 = ["Banana", "Lemon", "Apple"];
+        let fruit2 = ["Orange", "Mango"];
+        document.getElementById("ft1").innerHTML = "fruit1: " +fruit1;
+        document.getElementById("ft2").innerHTML = "fruit1: " +fruit2;
+
+        let concat = fruit1.concat(fruit2);
+
+        document.getElementById("concate").innerHTML = "concate ft1 and ft2:  " +concat;
+    </script>
+</body>
+</html>

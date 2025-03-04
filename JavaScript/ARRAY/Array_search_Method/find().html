@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Arrays</h1>
+<h2>The find() Method</h2>
+
+<p id="array"></p>
+<p id="search"></p>
+
+<script>
+const numbers = [3, 9, 16, 25, 4];
+document.getElementById("search").innerHTML = "Array Value: " +numbers;
+let data = numbers.find(searchFunction);
+document.getElementById("array").innerHTML = "first value of divide by 2: " +data;
+function searchFunction(value, index, array)
+{
+    return value%2 == 0;
+}
+</script>
+
+</body>
+</html>

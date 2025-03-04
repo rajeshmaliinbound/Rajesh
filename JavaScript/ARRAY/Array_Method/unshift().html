@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center; padding: 100px;">
+        <h2>Example of unshift() method</h2>
+        <p id="friends"></p>
+         <form action="">
+            <label for="">Add New Friend: </label>
+            <input type="text" id="input" placeholder="">
+            <button type="button" onclick="fndFunction()">Add now</button>
+         </form>
+    </div>
+
+    <script>
+        function fndFunction(){
+            let FormData  = document.getElementById("input").value;
+            friends.unshift(FormData);//Unshift() method Add new element to an Array from 0 Index.....................
+            document.getElementById("friends").innerHTML = "Friends Group: " +friends;
+        }
+          let friends = ["Rajesh", "Ravi", "Karan", "Durgesh", "Ashish"];
+          document.getElementById("friends").innerHTML = "Friends Group: " +friends;
+    </script>
+</body>
+</html>

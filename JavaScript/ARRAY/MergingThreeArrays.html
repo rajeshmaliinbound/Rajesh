@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h4{
+            display: inline;
+            color: green;
+        }
+
+        span{
+            font-size: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Example of Merging Three Arrays using Concat method</h2>
+    <p id="ft1"></p>
+    <p id="ft2"></p>
+    <p id="ft3"></p>
+    <p id="concate"></p>
+
+    <script>
+        let fruit1 = [" Banana", " Lemon"];
+        let fruit2 = [" Orange", " Mango"];
+        let fruit3 = [" Apple", " pineApple"];
+        document.getElementById("ft1").innerHTML = "<span>fruit1</span>: " +"<h4>" +fruit1 +"</h4>";
+        document.getElementById("ft2").innerHTML = "<span>fruit2</span>: " +"<h4>" +fruit2 +"</h4>";
+        document.getElementById("ft3").innerHTML = "<span>fruit3</span>: " +"<h4>" +fruit3 +"</h4>";
+
+        let concat = fruit1.concat(fruit2,fruit3);
+
+        document.getElementById("concate").innerHTML = "<span>Merging Three Arrays fruit1,fruit2 or fruit3:  </span>" +"<h4>" +concat +"</h4>";
+    </script>
+</body>
+</html>

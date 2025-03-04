@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>flatMap() method first maps all elements of an array and then creates a new array by flattening the array.</h3>
+    <p id="array"></p>
+    <p id="newArray"></p>
+
+    <script>
+        let number = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        document.getElementById("array").innerHTML = "Array Data: " +number;
+        let newArray = number.flatMap(x => [x,x*10]);//flatMap() method first maps all elements of an array and then creates a new array by flattening the array.
+        document.getElementById("newArray").innerHTML = "flatMap Data: " +newArray;
+
+    </script>
+</body>
+</html>

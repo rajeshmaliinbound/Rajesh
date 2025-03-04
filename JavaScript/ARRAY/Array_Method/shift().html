@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of shift() method</h2>
+    <p id="friends"></p>
+    <p id="shift"></p>
+    <p id="All"></p>
+    <script>
+        let friends = ["Rajesh", "Ravi", "Karan", "Durgesh", "Ashish"];
+        document.getElementById("friends").innerHTML = "All Friends: " +friends;
+        
+        let shift = friends.shift();// Remove First Element form array and Return remove Value
+        document.getElementById("shift").innerHTML = "Element of use shift() method: " +shift;
+        document.getElementById("All").innerHTML = "friends After Use shift() method: " +friends
+    </script>
+</body>
+</html>

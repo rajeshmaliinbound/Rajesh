@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of pop() method</h2>
+    <p id="Array"></p>
+    <p id="pop"></p>
+    <p id="new"></p>
+
+    <script>
+        let Cars = ["BMW", "Audi", "Lembordhini", "Porse", "Thar", "Volvo"];
+        let pop = Cars.pop()//pop() method Remove Last Element From Array and return Remove Element
+
+        document.getElementById("Array").innerHTML = "All Array Element:&nbsp&nbsp&nbsp " +Cars;
+        document.getElementById("pop").innerHTML = "Rteurn Remove Element using pop() method:&nbsp&nbsp&nbsp "  +pop;
+        document.getElementById("new").innerHTML = "After Using pop() method:&nbsp&nbsp&nbsp "  +Cars;
+
+    </script>
+</body>
+</html>

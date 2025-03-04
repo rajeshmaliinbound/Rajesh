@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of Splicing Array</h2>
+    <p id="Data"></p>
+    <p id="Data2"></p>
+    <script>
+        let fruits = ["Banana", "Mango", "Orange", "Apple", "PineApple"];
+        document.getElementById("Data").innerHTML = "Fruits: " +  fruits;
+
+        fruits.splice(2,1, "Lemon", "Kiwi");
+        document.getElementById("Data2").innerHTML = "sliceData: " +fruits;
+    </script>
+</body>
+</html>

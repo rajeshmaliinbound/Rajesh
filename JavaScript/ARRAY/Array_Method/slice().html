@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of Sclicing Array</h2>
+    <p id="Data"></p>
+    <p id="Data2"></p>
+    <p id="Data3"></p>
+    <script>
+        let fruits = ["Banana", "Mango", "Orange", "Apple", "PineApple"];
+        document.getElementById("Data").innerHTML = "fruits Data: " +fruits;
+        const ftr2 = fruits.slice(2);
+        document.getElementById("Data2").innerHTML = fruits + "<br><br>" + ftr2;
+        
+    </script>
+</body>
+</html>

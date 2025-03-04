@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="array"></p>
+    <p id="copy"></p>
+    <script>
+        let fruits = [" Apple ", " Banana", " PineApple ", " Orange ", " Mango ", " Lemon "];
+        document.getElementById("array").innerHTML = "All Fruits: " +fruits;
+        let copy = fruits.copyWithin(3,2,3);
+        document.getElementById("copy").innerHTML = "After Use copyWithin(3,0,3): " +copy;
+
+    </script>
+</body>
+</html>

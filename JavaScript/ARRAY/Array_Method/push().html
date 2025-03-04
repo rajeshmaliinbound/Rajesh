@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Addind Array using push()</h3>
+    <p id="result"></p>
+
+    <form action="">
+        <label>Add New Friend:</label>
+        <input type="text" placeholder="Add New Friend" id="friendID">
+        <button type="button" onclick="formFunction()">Add</button>
+    </form>
+
+    <script>
+
+        function formFunction(){
+            let fromData = document.getElementById("friendID").value;
+            friends.push(fromData);   // Add New Element in Array
+            document.getElementById("result").innerHTML = "Friends Group: " +friends;
+        }
+
+        let friends = ["Rajesh", "Ravi", "Karan", "Durgesh", "Ashish"];
+        document.getElementById("result").innerHTML = "Friends Group: " +friends;
+    </script>
+</body>
+</html>
