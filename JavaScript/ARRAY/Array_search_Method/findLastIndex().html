@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of findLastIndex() Array search Method...</h2>
+    <p id="Array"></p>
+    <p id="Index"></p>
+
+    <script>
+        let Values = [27, 28, 30, 40, 42, 35, 30];
+        document.getElementById("Array").innerHTML = "Array Values: " +Values;
+
+        let IndexData = Values.findLastIndex(x => x > 30);
+        document.getElementById("Index").innerHTML = "Find Value Index is: " +IndexData;
+    </script>
+</body>
+</html>

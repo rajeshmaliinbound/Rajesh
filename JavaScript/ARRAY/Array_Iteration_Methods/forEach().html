@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of forEach() </h2>
+    <p id="array"></p>
+    <p id="Value"></p>
+
+    <script>
+        let Data = [34,23,65,3,23,76,23];
+        document.getElementById("array").innerHTML = "Array Values: " +Data
+        let tl = "";
+        Data.forEach(DataFunction);
+        
+        function DataFunction(value, index, array){
+          tl += value  +"<br>";
+        }
+        
+        document.getElementById("Value").innerHTML = tl;
+    </script>
+</body>
+</html>

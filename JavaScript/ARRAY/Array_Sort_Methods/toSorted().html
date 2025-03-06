@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            color: green;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Example of toSorted() sorting Method</h2>
+    <h4>Difference sort() & toSorted(): sort() that the array sort in ascending order AND that the toStoted() method creates a new array, keeping the original array unchanged./h4>
+    <p id="Array"></p>
+    <p id="toSorted"></p>
+
+    <script>
+        let Month = ["January", "Febuary", "March", "April", "May"];
+        document.getElementById("Array").innerHTML = "Months: "  +"<span>" +Month  +"</span>";
+
+         let Data = Month.toSorted();// that the toStoted() method creates a new array, keeping the original array unchanged.
+         document.getElementById("toSorted").innerHTML = "Months After Using toSorted() Method: " +"<span>" +Data  +"</span>"; 
+    </script>
+</body>
+</html>

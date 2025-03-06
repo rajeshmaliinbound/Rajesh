@@ -6,6 +6,20 @@
 </head>
 <body>
     <h2>Example of findIndex() method </h2>
+    <p id="Array"></p>
+    <p id="Result"></p>
+
+    <script>
+        let number = [4, 9, 16, 25, 29];
+        document.getElementById("Array").innerHTML = "Array Values: " +number;
+
+        let temp = number.findIndex(tempFunction);
+        document.getElementById("Result").innerHTML = "First numnber has 18 over Index: " +temp;
+                
+        function tempFunction(value,index,array){
+           return value>18;
+        }
+    </script>
     
 </body>
 </html>

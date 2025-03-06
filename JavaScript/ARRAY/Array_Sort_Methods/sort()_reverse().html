@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            color: green;
+            font-size: 17px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sorting in Descending order for by combine sort() & reverse() Method</h2>
+    <p id="Month"></p>
+    <p id="sort"></p>
+    <script>
+        let month = ["January", "Fabuary", "March", "April", "May", "June", "July", "August", "September", "Octomber", "November", "December"];
+        document.getElementById("Month").innerHTML = "Array Values: "  +"<span>" +month +"</span>";
+
+        month.sort();
+        month.reverse();
+        document.getElementById("sort").innerHTML = "Combine sort() & reverse() Result is: " +"<span>" +month +"</span>";
+    </script>
+</body>
+</html>

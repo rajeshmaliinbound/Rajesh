@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of map() method</h2>
+    <p id="Array"></p>
+    <p id="forEach"></p>
+    <p id="Map"></p>
+
+    <script>
+        let Data = [32 ,43 ,12 ,65 ,24 ,66 ,23 ,90];
+        document.getElementById("Array").innerHTML = "Array Values: " +Data;
+
+        let tlfor = "";
+
+        let newData = Data.forEach(newDataFun);// forEach()
+        const tlmap = Data.map(dataFunction); //map()
+
+        function newDataFun(value, index, array){// forEach() does not return anything
+            tlfor += value*value + "<br>";
+        }
+
+        function dataFunction(value, index, array) {//map() this method return a new array with result applied to each element
+           return value*2;
+        }
+
+        document.getElementById("forEach").innerHTML = tlfor;
+        document.getElementById("Map").innerHTML = "map()=> value multiple by 2 All Result: " +tlmap;
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>example of toReversed() method</h2>
+    <p id="month"></p>
+    <p id="toReverse"></p>
+
+    <script>
+        let Month = ["jan", "feb", "march", "april","may","june"];
+        document.getElementById("month").innerHTML = "Month: " +Month;
+
+        let sort = Month.toReversed();
+        document.getElementById("toReverse").innerHTML = "After Use toReverse(): " +sort
+    </script>
+</body>
+</html>

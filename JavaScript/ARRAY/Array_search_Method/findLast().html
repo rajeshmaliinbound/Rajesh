@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Example of the findLast() search Array method</h2>
+    <p id="Values"></p>
+    <p id="Data"></p>
+
+    <script>
+        let Data = [27, 28, 30, 40, 42, 35, 30];
+        document.getElementById("Values").innerHTML = "All Values: " +Data;
+
+        let data = Data.findLast(x => x > 40);
+        document.getElementById("Data").innerHTML = "The last Number Over 40 Was : "+data;
+    </script>
+</body>
+</html>

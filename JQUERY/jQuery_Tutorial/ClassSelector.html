@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $(".demo").show();
+            });
+
+            $("button:first").click(function(){
+                $(".demo").hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="demo">
+        <h1>Example of Class selector in jquery</h1>
+        <h4>Inbound Webhub</h4>
+        <h5>hubspot Developement</h5>
+        <p>Ahmedabad India</p>      
+    </div>
+    <button>Hide All</button>
+    <button>show all</button>
+</body>
+</html>

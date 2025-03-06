@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            color: green;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Example of reverse() sorting Method</h2>
+    <p id="Array"></p>
+    <p id="reverseSort"></p>
+
+    <script>
+        let Month = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "Octumber", "November", "December"];
+        document.getElementById("Array").innerHTML = "Months: "  +"<span>" +Month  +"</span>";
+
+        Month.reverse();
+        document.getElementById("reverseSort").innerHTML = "Months After Using reverse() Method: " +"<span>" +Month  +"</span>";
+        
+    </script>
+</body>
+</html>
