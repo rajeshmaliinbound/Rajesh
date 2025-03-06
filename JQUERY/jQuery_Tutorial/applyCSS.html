@@ -1,0 +1,118 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $("table").css({"text-align": "center"});
+
+            $("button").css({"margin-top": "10px", "background-color": "white", "color": "blue",
+                             "border": "1px solid gray", "border-radius": "5px", "cursor": "pointer"});
+            $("button").hover(function(){
+                $(this).css({"background-color": "blue", "color": "white", "border-radius": "8px"});
+            },
+            function(){
+                $(this).css({"margin-top": "10px", "background-color": "white", "color": "blue",
+                             "border": "1px solid gray", "border-radius": "5px", "cursor": "pointer"});
+            }
+           );
+
+            $(".bt1").click(function(){
+                $("td:first-child, th:first-child").hide();
+            });
+
+            $(".bt2").click(function(){
+                $("td:first-child, th:first-child, .tr2").show();
+            });
+
+            $(".bt3").click(function(){
+                $(".tr2").hide();
+            });
+
+            $(".style1").click(function(){
+               $("table").css({"margin": "100px 500px", "padding": "10px", "border": "3px solid red"});
+               $("th").css({"padding": "5px", "color": "green"});
+               $("tr").css({"padding": "2px", "color": "blue"});
+               $(".btn").css({"text-align": "center"});
+            });
+
+            $(".style2").click(function(){
+               $("table").css({"margin": "100px 500px", "padding": "5px", "border": "10px solid Pink"});
+               $("th").css({"padding": "7px", "color": "Blue"});
+               $("tr").css({"padding": "3px", "color": "green"});
+               $(".btn").css({"text-align": "center"});
+            });
+
+            $(".style3").click(function(){
+               $("table").css({"margin": "100px 500px", "padding": "10px", "border": "none"});
+               $("th").css({"padding": "7px", "color": "Blue", "border": "2px solid black"});
+               $("tr").css({"padding": "3px", "color": "green", "border": "1px solid gray"});
+               $(".btn").css({"text-align": "center"});
+            });
+
+            $(".style4").click(function(){
+               $("table").css({"margin": "100px 500px", "padding": "10px", "border": "none"});
+               $("th").css({"padding": "7px", "color": "Blue", "border": "none"});
+               $("tr").css({"padding": "3px", "color": "green", "border": "none"});
+               $(".btn").css({"text-align": "center"});
+            });
+        });
+    </script>
+</head>
+<body>
+    
+        <table border="1">
+            <tr>
+                <th>SR no.</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th colspan="2">mobile no.</th>
+            </tr>
+            <tr class="tr2">
+                <td>1</td>
+                <td>Rajesh Mali</td>
+                <td>21</td>
+                <td>7284018094</td>
+                <td>8302803362</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ravi Mali</td>
+                <td>20</td>
+                <td>9473723923</td>
+                <td>9376236723</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Karan Singh</td>
+                <td>23</td>
+                <td>8723923643</td>
+                <td>9283746212</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Durgesh Banjara</td>
+                <td>25</td>
+                <td>7645344446</td>
+                <td>7854334765</td>
+            </tr>
+        </table>
+
+        <div class="btn">
+            <button class="bt1">hide first colunm</button>
+            <button class="bt3">Hide first row</button>
+            <button class="bt2">show All</button>        
+        </div>
+
+        <div class="btn">
+            <h4>Click and change style Table</h4>
+            <button class="style1">style-1</button> 
+            <button class="style2">style-2</button>
+            <button class="style3">style-3</button> 
+            <button class="style4">style-4</button>
+        </div>
+</body>
+</html>

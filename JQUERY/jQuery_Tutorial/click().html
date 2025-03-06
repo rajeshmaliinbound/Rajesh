@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("h3").click(function(){
+                $(this).css({"color": "green"});
+            });
+
+            $("p").click(function(){
+                $(this).hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Event of click() </h2>
+    <h3>(click me to color green)</h3>
+    <p>(click me to hide this paragraph)</p>
+</body>
+</html>
