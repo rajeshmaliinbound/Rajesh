@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#hide").click(function(){
+                $("p").css({"display":"none"});
+            });
+
+            $("#show").click(function(){
+                $("p").css({"display":"block"});
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>This Example of hide & show html Element without Using hide() and show() method</h2><br>
+    <p>click on hide button to hide me...</p>
+    <p>after click on show button for show all hided Element</p>
+
+    <button id="hide">hide</button>
+    <button id="show">show</button>
+</body>
+</html>

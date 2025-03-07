@@ -7,21 +7,18 @@
     <script>
        $(document).ready(function(){
         $("#hide").click(function(){
-            $("h2").hide();
+            $("h2").hide(500);
         });
 
         $("#show").click(function(){
-            $("h2").show();
+            $("h2").show(500);
         });
-
        });
     </script>
 </head>
 <body>
-
-    <h2>This Event hide() show() </h2>
+    <h2>This Event of hide() & show() with Speed Parameter </h2>
     <button id="hide">Hide</button>
     <button id="show">Show</button>
-    
 </body>
 </html>
