@@ -13,7 +13,7 @@
 <script>
     $(document).ready(function(){
         $("#btn1").click(function(){
-           $("#textset").text("This is text")
+           $("#textset").text("This is text");
         });
 
         $("#btn2").click(function(){
@@ -22,8 +22,8 @@
 
         $("#btn3").click(function(){
           $("#Input").val("Rajesh Mali");
-        })
-
+        });
+        
     });
 </script>
 <?php
