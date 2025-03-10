@@ -4,6 +4,8 @@
 
 <div style="text-align: center;">
     <h2>Use a jQuery method to slideToggle()...</h2>
+    <button id="btn1">Start</button>
+    <button id="btn2">Stop</button><br><br>
     <div id="box1"><p>Click on this for slideToggle panel</p></div>
     <div id="box2"><p> I'm Rajesh </p></div><br>
 </div>
@@ -16,7 +18,15 @@
                         "border":"2px solid Black", "margin-left":"340px"});
 
         $("#box1").click(function(){
-            $("#box2").slideToggle(500);
+            $("#box2").slideToggle(2000);
+        });
+
+        $("#btn1").click(function(){
+            $("#box2").slideToggle(2000);
+        });
+
+        $("#btn2").click(function(){
+            $("#box2").stop();
         });
     });
 
