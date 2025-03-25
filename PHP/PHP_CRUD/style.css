@@ -1,0 +1,150 @@
+/*Start CSS of form.php */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: pink;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding-right: 40px;
+}
+
+.error{
+    color: red;
+    font-size: 16px;
+}
+
+.mouse{
+    color: rgb(240, 58, 58);
+}
+
+h1{
+    margin-top: 0;
+    margin-left: 180px;
+    color: green;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: black;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="date"], input[type="time"], select {
+    width: 100%;
+    padding: 3px;
+    border: 1px solid green;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+    background-color: green;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0275d8;
+}
+
+.login-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-link a {
+    text-decoration: none;
+}        
+
+.login-link button:hover {
+    background-color: #025aa5;
+}
+
+/*Start CSS of display.php */
+.contaiiner{
+    margin: 5px;
+    padding: 5px;
+}
+
+.header{
+    text-align: center;
+}
+
+.header h1{
+    color: green;
+}
+
+.btn a{
+    margin-right: 80%;
+    font-size: 19px;
+    text-decoration: none;
+    color: darkgreen;
+    border: 1px solid yellowgreen;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.btn a:hover{
+    color: yellowgreen;
+    border: 1px solid green;
+    padding: 3px;
+    border-radius: 1px;
+}
+
+.Data{
+    margin: 30px;
+    padding: 10px;
+}
+
+table{
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+}
+table, th, td {
+    border: 3px solid gray;
+    border-collapse: collapse;
+}
+
+td img{
+    height: 35px;
+    border: 0.5px solid gray;
+    padding: 1px;
+    border-radius: 2px;
+}
+
+table a{
+    text-decoration: none;
+    border: 1px solid green;
+    padding: 2px;
+    color: green;
+}
+
+table a:hover{
+    border: 1px solid blue;
+    color: blue;
+}
+
+table td span a{
+    border: 1px solid red;
+    color: red;
+}

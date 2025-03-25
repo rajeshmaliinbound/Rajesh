@@ -1,20 +1,22 @@
 <?php
  include 'C:\xampp\htdocs\Inbound-Webhub\JQUERY\header.php'; 
 ?>
+<h2>Display dimensions of Div Documentheight() & Documentwidth()</h2>
+<button id="display">Document Width</button><br><br>
+<p id="document"></p>
+<p id="window"></p>
+<p>https://www.quora.com/What-is-the-easiest-way-to-add-or-edit-data-on-JSON-files-using-JavaScript-or-PHP</p>
 
-<button id="display">Display dimensions of Div height() & Width()</button><br><br>
-<div id="box1"></div>
-
-<style>
-    #box1{
-        height: 100px;
-        width: 400px;
-        border: 2px solid black;
-        background-color: pink;
-        text-align: center;
-    }
-</style>
-
+<script>
+   $(document).ready(function(){
+      $("#display").click(function(){
+        let text = "";
+        text += "Document Width is: " +$(document).width() +"<br>";
+        text += "Document Height is: "+$(document).height() +"<br>";
+        $("#document").html(text);
+      });
+   });
+</script>
 <?php
  include 'C:\xampp\htdocs\Inbound-Webhub\JQUERY\footer.php';
 ?>
