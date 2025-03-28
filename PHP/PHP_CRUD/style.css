@@ -207,3 +207,9 @@ table tr td span a{
     border: none;
     background-color: whitesmoke;
 }
+
+.activepage{
+    border: 1px solid yellowgreen;
+    color: blue;
+    background-color: green;
+}

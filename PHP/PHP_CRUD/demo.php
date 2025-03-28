@@ -3,18 +3,11 @@
 include 'connection.php';
 $limit = 5;
 $page = 1;
-$$searchpage = 1;
-
 if(isset($_GET['page'])){
     $page = $_GET['page'];
-    $offset = ($page-1)*$limit;
 }
 
-if(isset($_GET['searchpage'])){
-    $searchpage = $_GET['searchpage'];
-    $offset = ($searchpage-1)*$limit;
-}
-
+$offset = ($page-1)*$limit;
 //sorting table Data
 $field = isset($_GET['field']) ? $_GET['field'] : 'id';
 $sort = isset($_GET['sort']) && $_GET['sort'] == 'desc' ? 'desc' : 'asc' ;
@@ -23,7 +16,7 @@ $sortOrder = $sort == 'desc' ? 'asc' : 'desc';
 $sortIcon = $sort == 'asc' ? '⇧' : '⇩';
 
 //search Data
-if(isset($_POST['search']) || !$_POST['search'] == ''){
+if(isset($_POST['search']) && !$_POST['search'] == ''){
     $searchData = $_POST['search'];
 
     $search_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' LIMIT {$offset},{$limit}";
@@ -34,8 +27,6 @@ if(isset($_POST['search']) || !$_POST['search'] == ''){
     if(isset($page)){
       $all_sql = "SELECT * FROM registration ORDER BY $field $sort LIMIT {$offset},{$limit}";
     }
-
-    if(isset($searchpage));
     $result = $conn->query($all_sql);
 }
 
@@ -71,13 +62,8 @@ include 'header.php';
                 
               <!-- pagination start -->
                 <?php
-                if(isset($_POST['search'])){
-                    $query = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%'";
-                }else{
-                    $query = "SELECT * FROM registration ORDER BY $field $sort";
-                }
-                
-                $result1 = mysqli_query($conn,$query);
+                $sql1 ="SELECT * FROM registration ORDER BY $field $sort";
+                $result1 = mysqli_query($conn,$sql1);
 
                 if(mysqli_num_rows($result) > 0){
                     $totel_row = mysqli_num_rows($result1);
@@ -98,11 +84,7 @@ include 'header.php';
                             $active = "";
                         }
 
-                        if(isset($_POST['search'])){
-                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?searchpage=<?php echo $i?>"><?php echo $i; ?></a></span><?php
-                        }else{
-                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?searchpage=<?php echo $i?>"><?php echo $i; ?></a></span><?php
-                        }
+                        ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?page=<?php echo $i?>"><?php echo $i; ?></a></span><?php
                     }
                     ?>
                     <?php
