@@ -24,6 +24,11 @@ body {
     font-size: 16px;
 }
 
+#errorFile{
+    color: red !important;
+    font-size: 16px;
+}
+
 .mouse{
     color: rgb(240, 58, 58);
 }
@@ -40,7 +45,7 @@ label {
     color: black;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="date"], input[type="time"], select {
+#formData input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="date"], input[type="time"], select {
     width: 100%;
     padding: 3px;
     border: 1px solid green;
@@ -48,11 +53,11 @@ input[type="text"], input[type="email"], input[type="password"], input[type="tel
     margin-bottom: 10px;
 }
 
-input[type="checkbox"], input[type="radio"] {
+#formData input[type="checkbox"], input[type="radio"] {
     margin-right: 5px;
 }
 
-input[type="submit"] {
+#formData input[type="submit"] {
     background-color: green;
     color: #fff;
     border: none;
@@ -62,7 +67,7 @@ input[type="submit"] {
     font-size: 16px;
 }
 
-input[type="submit"]:hover {
+#formData input[type="submit"]:hover {
     background-color: #0275d8;
 }
 
@@ -79,6 +84,7 @@ input[type="submit"]:hover {
     background-color: #025aa5;
 }
 
+
 /*Start CSS of display.php */
 .contaiiner{
     margin: 5px;
@@ -91,6 +97,7 @@ input[type="submit"]:hover {
 
 .header h1{
     color: green;
+    margin-left: 20px;
 }
 
 .btn a{
@@ -132,19 +139,71 @@ td img{
     border-radius: 2px;
 }
 
-table a{
+table tr td a{
     text-decoration: none;
     border: 1px solid green;
     padding: 2px;
+    margin: 2px;
     color: green;
 }
 
-table a:hover{
+table tr td a:hover{
     border: 1px solid blue;
     color: blue;
 }
 
-table td span a{
+table tr td span a{
     border: 1px solid red;
     color: red;
+}
+
+.thData a{
+    text-decoration: none;
+    border: none;
+    padding: 2px;
+    margin: 2px;
+    color: black;
+}
+
+.srcInput{
+    display: inline; 
+    text-align: center;
+}
+
+.srcForm input{
+    width: 30% !important;
+    padding: 5px;
+    border: 2px solid gray;
+    border-radius: 2px;
+}
+
+.pagination {
+    display: inline-block;
+    text-align: center;
+    margin: 20px 500px;
+}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid green;
+    border-radius: 45%;
+}
+
+.pagination a:hover{
+    border: 1px solid yellowgreen;
+    color: blue;
+    background-color: green;
+}
+
+.fl a{
+    border: none;
+    padding: 0px 10px;
+    font-size: 25px;
+}
+
+.fl a:hover{
+    border: none;
+    background-color: whitesmoke;
 }
