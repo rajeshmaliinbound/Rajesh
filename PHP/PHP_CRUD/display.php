@@ -3,18 +3,11 @@
 include 'connection.php';
 $limit = 5;
 $page = 1;
-$$searchpage = 1;
-
 if(isset($_GET['page'])){
     $page = $_GET['page'];
-    $offset = ($page-1)*$limit;
 }
 
-if(isset($_GET['searchpage'])){
-    $searchpage = $_GET['searchpage'];
-    $offset = ($searchpage-1)*$limit;
-}
-
+$offset = ($page-1)*$limit;
 //sorting table Data
 $field = isset($_GET['field']) ? $_GET['field'] : 'id';
 $sort = isset($_GET['sort']) && $_GET['sort'] == 'desc' ? 'desc' : 'asc' ;
@@ -23,10 +16,10 @@ $sortOrder = $sort == 'desc' ? 'asc' : 'desc';
 $sortIcon = $sort == 'asc' ? '⇧' : '⇩';
 
 //search Data
-if(isset($_POST['search']) || !$_POST['search'] == ''){
-    $searchData = $_POST['search'];
+if(isset($_REQUEST['search']) && !$_REQUEST['search'] == ''){
+    $searchData = $_REQUEST['search'];
 
-    $search_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' LIMIT {$offset},{$limit}";
+    $search_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' ORDER BY $field $sort LIMIT {$offset},{$limit}";
 
     $result = mysqli_query($conn, $search_sql);
 
@@ -34,8 +27,6 @@ if(isset($_POST['search']) || !$_POST['search'] == ''){
     if(isset($page)){
       $all_sql = "SELECT * FROM registration ORDER BY $field $sort LIMIT {$offset},{$limit}";
     }
-
-    if(isset($searchpage));
     $result = $conn->query($all_sql);
 }
 
@@ -47,7 +38,7 @@ include 'header.php';
             <h1>All Registered Users</h1>
             <span class="btn"><a href="form.php">Add User</a></span>
              <form action="display.php" method="post" class="srcForm">
-                <input type="text" name="search" value="<?php if(isset($_POST['search'])){ echo $_POST['search']; }?>" placeholder="Search by Name, Gender or Hobbies" id="data" require>
+                <input type="text" name="search" value="<?php if(isset($_REQUEST['search'])){ echo $_REQUEST['search']; }?>" placeholder="Search by Name, Gender or Hobbies" id="data" require>
                 <span><input type="submit" value="Search" id="srcbtn" style="width: 5% !important;"> <a href="display.php" style="text-decoration: none; color: green;">&nbsp&nbsp Refresh All</a></button></span>
                 <script>
                     $(document).ready(function(){
@@ -65,19 +56,28 @@ include 'header.php';
                         });
                     });
                 </script>
+                <div>
+                    Number of Rows:<select name="" id="select">
+                        <option value="" selected>5</option>
+                        <option value="">15</option>
+                        <option value="">30</option>
+                        <option value="">60</option>
+                        <option value="">100</option>
+                    </select>
+                </div>
              </form>
 
             <div class="Data">
                 
               <!-- pagination start -->
-                <?php
-                if(isset($_POST['search'])){
-                    $query = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%'";
+              <?php
+                if(isset($_REQUEST['search'])){
+                    $query = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' ORDER BY $field $sort";
                 }else{
                     $query = "SELECT * FROM registration ORDER BY $field $sort";
                 }
-                
-                $result1 = mysqli_query($conn,$query);
+
+                $result1 = mysqli_query($conn,$query);  
 
                 if(mysqli_num_rows($result) > 0){
                     $totel_row = mysqli_num_rows($result1);
@@ -85,8 +85,19 @@ include 'header.php';
                     
                     <div class="pagination">
                         <?php
-                        if($page > 1){ ?>
-                            <span class="fl"><a href="display.php?page=<?php echo $page-1?>"><<</a></span> <?php
+                        if(isset($_REQUEST['search'])){
+                            if($page > 1){?>
+                               <span class="fl"><a href="display.php?search=<?php echo $searchData?>&page=<?php echo $page-1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>"><<</a></span><?php 
+                            }
+                        }
+                        elseif(isset($_REQUEST['field']) && isset($_REQUEST['sort'])){
+                            if($page > 1){ ?>
+                                <span class="fl"><a href="display.php?field=<?php echo $field;?>&sort=<?php echo $sort;?>&page=<?php echo $page-1;?>"><<</a></span><?php 
+                            }
+                        }else{
+                            if($page > 1){ ?>
+                                <span class="fl"><a href="display.php?page=<?php echo $page-1?>"><<</a></span> <?php
+                            }
                         }
                         ?>
                        
@@ -98,16 +109,29 @@ include 'header.php';
                             $active = "";
                         }
 
-                        if(isset($_POST['search'])){
-                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?searchpage=<?php echo $i?>"><?php echo $i; ?></a></span><?php
+                        if(isset($_REQUEST['search'])){
+                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?search=<?php echo $searchData;?>&page=<?php echo $i;?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>"><?php echo $i; ?></a></span><?php
+                        }
+                        elseif(isset($_REQUEST['field']) && isset($_REQUEST['sort'])){
+                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?field=<?php echo $field;?>&sort=<?php echo $sort;?>&page=<?php echo $i;?>"><?php echo $i; ?></a></span><?php
                         }else{
-                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?searchpage=<?php echo $i?>"><?php echo $i; ?></a></span><?php
+                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?page=<?php echo $i?>"><?php echo $i; ?></a></span><?php
                         }
                     }
                     ?>
                     <?php
-                    if($totel_page>$page){ ?>
-                        <span class="fl"><a href="display.php?page=<?php echo $page+1?>">>></a></span> <?php
+                    if(isset($_REQUEST['search'])){
+                        if($totel_page>$page){?>
+                           <span class="fl"><a href="display.php?search=<?php echo $searchData?>&page=<?php echo $page+1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>">>></a></span><?php 
+                        }
+                    }elseif(isset($_REQUEST['field']) && isset($_REQUEST['sort'])){
+                        if($totel_page>$page){ ?>
+                            <span class="fl"><a href="display.php?field=<?php echo $field;?>&sort=<?php echo $sort;?>&page=<?php echo $page+1;?>">>></a></span><?php 
+                        }
+                    }else{
+                        if($totel_page>$page){ ?>
+                            <span class="fl"><a href="display.php?page=<?php echo $page+1?>">>></a></span> <?php
+                        }
                     }
                     ?>
                 </div> <?php
@@ -118,15 +142,14 @@ include 'header.php';
                 <table>
                     <tr>
                         <th>Table Rows</th>
-                        <th><span class="thData"><a href="?field=id&sort=<?php echo $sortOrder; ?>">ID <?php echo $sortIcon; ?></a></span></th>
-                        <th><span class="thData"><a href="?field=name&sort=<?php echo $sortOrder; ?>">Name <?php echo $sortIcon; ?></a></span></th>
-                        <th><span class="thData"><a href="?field=email&sort=<?php echo $sortOrder; ?>">Email <?php echo $sortIcon; ?></a></span></th>
-                        <th><span class="thData"><a href="?field=password&sort=<?php echo $sortOrder; ?>">Password <?php echo $sortIcon; ?></a></span></th>
-                        <th><span class="thData"><a href="?field=phone&sort=<?php echo $sortOrder; ?>">Mobile Number <?php echo $sortIcon; ?></a></span></th>
+                        <th><span class="thData"><a href="?field=id&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} ?>">ID <?php echo $sortIcon; ?></a></span></th>
+                        <th><span class="thData"><a href="?field=name&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} ?>">Name <?php echo $sortIcon; ?></a></span></th>
+                        <th><span class="thData"><a href="?field=email&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} ?>">Email <?php echo $sortIcon; ?></a></span></th>
+                        <th><span class="thData"><a href="?field=phone&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} ?>">Mobile Number <?php echo $sortIcon; ?></a></span></th>
                         <th><span class="thData"><a href="?field=gender&sort=<?php echo $sortOrder; ?>">Gender <?php echo $sortIcon; ?></a></span></th>
-                        <th><span class="thData"><a href="?field=dob&sort=<?php echo $sortOrder; ?>">DOB <?php echo $sortIcon; ?></a></span></th>
-                        <th><span class="thData"><a href="?field=hobbies&sort=<?php echo $sortOrder; ?>">Hobbies <?php echo $sortIcon; ?></a></span></th>
-                        <th><span class="thData"><a href="?field=image&sort=<?php echo $sortOrder; ?>">Image <?php echo $sortIcon; ?></a></span></th>
+                        <th><span class="thData"><a href="?field=dob&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} ?>">DOB <?php echo $sortIcon; ?></a></span></th>
+                        <th><span class="thData"><a href="?field=hobbies&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} ?>">Hobbies <?php echo $sortIcon; ?></a></span></th>
+                        <th><span class="thData"><a href="?field=image&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} ?>">Image <?php echo $sortIcon; ?></a></span></th>
                         <th colspan ="2">ACTIONS</th>
                     </tr>
                     <?php
@@ -142,7 +165,6 @@ include 'header.php';
                             <td><?php echo $row["id"];?></td>
                             <td><?php echo $row["name"];?></td>
                             <td><?php echo $row["email"];?></td>
-                            <td><?php echo $row["password"];?></td>
                             <td><?php echo $row["phone"];?></td>
                             <td><?php echo $row["gender"];?></td>
                             <td><?php echo $row["dob"];?></td>

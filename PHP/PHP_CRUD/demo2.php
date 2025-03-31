@@ -3,11 +3,17 @@
 include 'connection.php';
 $limit = 5;
 $page = 1;
+$offset = ($page-1)*$limit;
 if(isset($_GET['page'])){
     $page = $_GET['page'];
+    $offset = ($page-1)*$limit;
 }
 
-$offset = ($page-1)*$limit;
+if(isset($_GET['searchpage'])){
+    $searchpage = $_GET['searchpage'];
+    $offset = ($searchpage-1)*$limit;
+} 
+
 //sorting table Data
 $field = isset($_GET['field']) ? $_GET['field'] : 'id';
 $sort = isset($_GET['sort']) && $_GET['sort'] == 'desc' ? 'desc' : 'asc' ;
@@ -16,10 +22,10 @@ $sortOrder = $sort == 'desc' ? 'asc' : 'desc';
 $sortIcon = $sort == 'asc' ? '⇧' : '⇩';
 
 //search Data
-if(isset($_POST['search']) && !$_POST['search'] == ''){
+if(isset($_POST['search']) || isset($_GET['searchpage'])){
     $searchData = $_POST['search'];
 
-    $search_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' LIMIT {$offset},{$limit}";
+    $all_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' LIMIT {$offset},{$limit}";
 
     $result = mysqli_query($conn, $search_sql);
 
@@ -46,7 +52,7 @@ include 'header.php';
                             var isValid = true;
 
                             if($("#data").val()=== ''){
-                            $("#data").attr("placeholder","Enter Value search from name,gender or hobbies Field");
+                            $("#data").attr("placeholder"," check my work & tell me any bugs in my complated work and after this tell me how many more tasks Add in this tasks and i after this tell time acording to work");
                             isValid = false;
                             }
 
@@ -62,8 +68,13 @@ include 'header.php';
                 
               <!-- pagination start -->
                 <?php
-                $sql1 ="SELECT * FROM registration ORDER BY $field $sort";
-                $result1 = mysqli_query($conn,$sql1);
+                if(isset($_POST['search'])){
+                    $query = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%'";
+                }else{
+                    $query = "SELECT * FROM registration ORDER BY $field $sort";
+                }
+                
+                $result1 = mysqli_query($conn,$query);
 
                 if(mysqli_num_rows($result) > 0){
                     $totel_row = mysqli_num_rows($result1);
@@ -84,7 +95,11 @@ include 'header.php';
                             $active = "";
                         }
 
-                        ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?page=<?php echo $i?>"><?php echo $i; ?></a></span><?php
+                        if(isset($_POST['search'])){
+                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?searchpage=<?php echo $i?>"><?php echo $i; ?></a></span><?php
+                        }else{
+                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?page=<?php echo $i?>"><?php echo $i; ?></a></span><?php
+                        }
                     }
                     ?>
                     <?php
