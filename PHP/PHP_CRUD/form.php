@@ -49,7 +49,7 @@ if(isset($_GET["id"])){
                     echo "checked";
                 }
             }
-            ?>> Male &nbsp; &nbsp;
+            ?>> <label for="Male" style="display: inline;">Male</label> &nbsp; &nbsp;
             <input type="radio" id="Female" name="gender" value="Female"
             <?php
             if(isset($row['gender']))
@@ -58,7 +58,7 @@ if(isset($_GET["id"])){
                     echo "checked";
                 }
             }
-            ?>>Female
+            ?>><label for="Female" style="display: inline;">Female</label>
 
             <label>Date of Birth:&nbsp;&nbsp;<span class="error" id="errorDob"></span></label>
             <input type="date" id="Dob" value="<?php if(isset($row['dob'])){ echo $row['dob'];} ?>" name="dob">
@@ -74,7 +74,8 @@ if(isset($_GET["id"])){
                     echo "checked";
                 }
             }
-            ?>>Coding
+            ?>><label for="Coding" style="display: inline;">Coding</label>
+
             <input type="checkbox" id="Traveling" name="hobbies[]" value="traveling"
             <?php
             if(isset($row['hobbies']))
@@ -83,8 +84,9 @@ if(isset($_GET["id"])){
                     echo "checked";
                 }
             }
-            ?>>Traveling
-            <input type="checkbox" id="Sports"  name="hobbies[]" value="sports"
+            ?>><label for="Traveling" style="display: inline;">traveling</label>
+
+            <input type="checkbox" id="sports"  name="hobbies[]" value="sports"
             <?php
             if(isset($row['hobbies']))
             {
@@ -92,7 +94,8 @@ if(isset($_GET["id"])){
                     echo "checked";
                 }
             }
-            ?>>Sports
+            ?>><label for="sports" style="display: inline;">sports</label>
+
             <input type="checkbox" id="Music" name="hobbies[]" value="music"
             <?php
             if(isset($row['hobbies']))
@@ -101,7 +104,8 @@ if(isset($_GET["id"])){
                     echo "checked";
                 }
             }
-            ?>>Music
+            ?>><label for="Music" style="display: inline;">music</label>
+
             <input type="checkbox" id="Art" name="hobbies[]" value="art"
             <?php
             if(isset($row['hobbies']))
@@ -110,7 +114,7 @@ if(isset($_GET["id"])){
                     echo "checked";
                 }
             }
-            ?>>Art
+            ?>><label for="Art" style="display: inline;">art</label>
 
             <label>Your Photo:&nbsp;&nbsp;<span id="errorFile"></span><br><span id="ValidFile"></span></label>
             <input type="file" value="" id="File" name="image"><br><br>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connection.php';
 
 $Name = $_POST["name"];
@@ -23,6 +24,7 @@ $sql = "INSERT INTO `registration`(`name`, `email`, `password`, `phone`, `gender
 $result = mysqli_query($conn,$sql);
 
 if($result){
+    $_SESSION['useremail'] = $Email;
     header("location:display.php");
 }else{
     echo "Faild:" .mysqli_error($conn);
