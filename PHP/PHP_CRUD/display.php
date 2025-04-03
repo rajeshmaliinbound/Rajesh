@@ -68,9 +68,8 @@ include 'header.php';
 
               <!-- Show data using selected number of rows -->
               <div>
-                    Select Number of Rows:<select name="" id="rows" style="width: 8%; margin-top: 10px; margin-bottom: 0px;">
+                    Select Number of Rows:<select name="" id="rows" style="width: 4%; margin-top: 10px; margin-bottom: 0px;">
                         <!-- <option selected disabled>select row</option> -->
-                        <option>selects row</option>
                         <option value="5" <?php if(isset($_REQUEST['limit'])) { if($limit == 5){ echo "selected";} }?>>5</option>
                         <option value="10" <?php if(isset($_REQUEST['limit'])) { if($limit == 10){ echo "selected";} }?>>10</option>
                         <option value="15" <?php if(isset($_REQUEST['limit'])) { if($limit == 15){ echo "selected";} }?>>15</option>
@@ -88,6 +87,52 @@ include 'header.php';
                         });
                     });
                 </script>
+                
+                <!-- New Registration,Edit,Delete Message show -->
+                <div style="color: Green;"><h4 id="newuser"></h4></div>
+                 <?php
+                //   New Registration Message
+                 if(isset($_SESSION['useremail'])){
+                    ?>
+                    <script>
+                        document.getElementById("newuser").innerHTML = "Registration Successfull!";
+                        setTimeout(function(){
+                            $("#newuser").fadeOut("slow",2000);
+                            $("#newuser").css({"color":"green"});
+                        },3000);
+                    </script>
+                    <?php
+                    if(isset($_SESSION['useremail'])){ ; unset($_SESSION['useremail']);}
+                 }
+
+                //  delete message
+                 if(isset($_SESSION['delete'])){
+                    ?>
+                    <script>
+                        $("#newuser").text("<?php echo $_SESSION['delete'] ?>");
+                        $("#newuser").css({"color":"red"});
+                        setTimeout(function(){
+                            $("#newuser").fadeOut("slow",2000);
+                        },3000);
+                    </script>
+                    <?php
+                    if(isset($_SESSION['delete'])){ ; unset($_SESSION['delete']);}
+                 }
+
+                 //  Edit message
+                 if(isset($_SESSION['edit'])){
+                    ?>
+                    <script>
+                        $("#newuser").text("<?php echo $_SESSION['edit'] ?>");
+                        $("#newuser").css({"color":"green"});
+                        setTimeout(function(){
+                            $("#newuser").fadeOut("slow",2000);
+                        },3000);
+                    </script>
+                    <?php
+                    if(isset($_SESSION['edit'])){ ; unset($_SESSION['edit']);}
+                 }
+                 ?>
 
             <div class="Data">
                 
@@ -161,9 +206,6 @@ include 'header.php';
                 ?>
              <!-- Pagination End -->
 
-              <!-- new registration message show -->
-              <div style="color: Green;"><h4><?php if(isset($_SESSION['useremail'])){ echo "regisration Successfull !"; session_unset();} ?></h4></div>
-
               <!-- Table structure -->
                 <table>
                     <tr>
@@ -198,7 +240,7 @@ include 'header.php';
                             <td>
                                 <img width="50" src="upload/<?php echo $row["image"] ?>" alt="Empty">
                             </td>
-                            <td><a href="form.php?id=<?php echo $row["id"]?>">Edit</a></td>
+                            <td><a href="form.php?field=<?php if(isset($field)){ echo $field; } ?>&sort=<?php if(isset($sort)){ echo $sort; } if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($limit)){ ?>&limit=<?php echo $limit;}?>&page=<?php echo $page; ?> &id=<?php echo $row["id"]?>">Edit</a></td>
                             <td><span><a href="delete.php?field=<?php if(isset($field)){ echo $field; } ?>&sort=<?php if(isset($sort)){ echo $sort; } if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];}?>&page=<?php echo $page; ?> &id=<?php echo $row["id"]?>" onclick="return confirm('Are you sure you want to delete this Row?')">Delete</a></span></td>
                             </tr><?php
                         }

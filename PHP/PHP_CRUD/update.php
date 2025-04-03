@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connection.php';
 $Id = $_POST["id"];
 $Name = $_POST["name"];
@@ -31,7 +32,12 @@ $result = mysqli_query($conn,$sql);
 $result = mysqli_query($conn,$sql);
 
 if($result){
-    header("location:display.php");
+    $_SESSION['edit'] = "Edit Successfull!";
+    ?>
+    <script>
+        window.location.href="display.php<?php if(isset($_REQUEST['sort'])){?>?sort=<?php echo $_REQUEST['sort'];}?><?php if(isset($_REQUEST['field'])){?>&field=<?php echo $_REQUEST['field'];}?><?php if(isset($_REQUEST['search'])){?>&search=<?php echo $_REQUEST['search'];} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['page'])){ ?>&page=<?php echo $_REQUEST['page'];}?>";
+    </script>
+    <?php
 }else{
     echo "Faild:" .mysqli_error($conn);
 }

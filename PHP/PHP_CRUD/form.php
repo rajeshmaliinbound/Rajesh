@@ -18,7 +18,8 @@ if(isset($_GET["id"])){
             echo "Registration Form";
         }?>
         </h1>
-        <form action=" <?php if(isset($row["id"])){ echo "update.php";}else{ echo "insert.php"; }?>" id="formData" method="post" enctype= "multipart/form-data">
+        
+        <form action=" <?php if(isset($_GET["id"])){ echo "update.php"; }else{ echo "insert.php"; }?><?php if(isset($_REQUEST['limit'])){ echo '?limit='.$_REQUEST['limit'];} if(isset($_REQUEST['page'])){ echo '&page='.$_REQUEST['page'];} if(isset($_REQUEST['search'])){ echo '&search='.$_REQUEST['search'];} if(isset($_REQUEST['field'])){ echo '&field='.$_REQUEST['field'];} if(isset($_REQUEST['sort'])){ echo '&sort='.$_REQUEST['sort'];}?>" id="formData" method="post" enctype= "multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $row['id'];?>">
             <label>Name:&nbsp;&nbsp;<span class="error" id="errorName"></label>
             <input type="text" id="Name" name="name" value="<?php
