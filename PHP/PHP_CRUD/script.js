@@ -96,6 +96,6 @@
                 $('#HobbiesError').text('');
             }
         });
-//------------for checkbox type input Validation End---------------        
+//------------for checkbox type input Validation End---------------
    });
 // <!----------------- jquery End ------------------->

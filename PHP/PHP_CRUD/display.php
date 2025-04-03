@@ -14,7 +14,7 @@ if(isset($_GET['page'])){
 }
 
 $offset = ($page-1)*$limit;
-//sorting table Data
+//sorting formate table Data
 $field = isset($_GET['field']) ? $_GET['field'] : 'id';
 $sort = isset($_GET['sort']) && $_GET['sort'] == 'desc' ? 'desc' : 'asc' ;
 
@@ -23,18 +23,32 @@ $sortIcon = $sort == 'asc' ? '⇧' : '⇩';
 
 //find all row of search Data
 if(isset($_REQUEST['search']) && !$_REQUEST['search'] == ''){
-    $searchData = $_REQUEST['search'];
 
-    $search_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' ORDER BY $field $sort LIMIT {$offset},{$limit}";
+    if(isset($_REQUEST['fgender'])){
+        $searchData = $_REQUEST['fgender'];
+        $search_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' ORDER BY $field $sort LIMIT {$offset},{$limit}";
+    }else{
+        $searchData = $_REQUEST['search'];
+        $search_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' ORDER BY $field $sort LIMIT {$offset},{$limit}";
+    }
 
     $result = mysqli_query($conn, $search_sql);
 
 }else{
-    //fetch all data from Database with sorting 
-    if(isset($page)){
-      $all_sql = "SELECT * FROM registration ORDER BY $field $sort LIMIT {$offset},{$limit}";
+    if(isset($_REQUEST['fgender'])){
+        $gendersrc = $_REQUEST['fgender'];
+        $search_sql = "SELECT * FROM registration WHERE gender LIKE '$gendersrc' ORDER BY $field $sort LIMIT {$offset},{$limit}";
     }
-    $result = $conn->query($all_sql);
+    elseif(isset($_REQUEST['fhobbies'])){
+        $hobbiessrc = $_REQUEST['fhobbies'];
+        $search_sql = "SELECT * FROM registration WHERE hobbies LIKE '$hobbiessrc' ORDER BY $field $sort LIMIT {$offset},{$limit}";
+    }else{
+        //fetch all data from Database with sorting 
+        $search_sql = "SELECT * FROM registration ORDER BY $field $sort LIMIT {$offset},{$limit}";
+    }
+
+    $result = mysqli_query($conn, $search_sql);
+    $result = $conn->query($search_sql);
 }
 
 // html structure
@@ -43,6 +57,49 @@ include 'header.php';
     <div class="contaiiner">
         <div class="header">
             <h1>All Registered Users</h1>
+
+            <!-- Filteration Structure Start -->
+            <div style="margin-left: 60%; display: flex; align-items: center; justify-content: right;">
+                <h2 style="padding-right: 10px; margin-top:10px;">Filteration:</h2>
+                <select class="filteration" id="fgender" style="width: 25%;">
+                <option value="" <?php if(isset($_REQUEST['fgender'])){ if($_REQUEST['fgender']=== ''){ echo "selected"; } }?>>Select Gender</option>
+                <option value="Male"<?php if(isset($_REQUEST['fgender'])){ if($_REQUEST['fgender']=== 'Male'){ echo "selected"; } }?>>Male</option>
+                <option value="Female" <?php if(isset($_REQUEST['fgender'])){ if($_REQUEST['fgender']=== 'Female'){ echo "selected"; } }?>>Female</option>
+                </select>
+
+                <select class="filteration" id="fhobbies" style="width: 30%; margin-left: 5px;">
+                <option value="" <?php if(isset($_REQUEST['fhobbies'])){ if($_REQUEST['fhobbies']=== ''){ echo "selected"; } }?>>Select Hobbies</option>
+                <option value="Coding" <?php if(isset($_REQUEST['fhobbies'])){ if($_REQUEST['fhobbies']=== 'Coding'){ echo "selected"; } }?>>Coding</option>
+                <option value="traveling" <?php if(isset($_REQUEST['fhobbies'])){ if($_REQUEST['fhobbies']=== 'traveling'){ echo "selected"; } }?>>traveling</option>
+                <option value="sports" <?php if(isset($_REQUEST['fhobbies'])){ if($_REQUEST['fhobbies']=== 'sports'){ echo "selected"; } }?>>sports</option>
+                <option value="music" <?php if(isset($_REQUEST['fhobbies'])){ if($_REQUEST['fhobbies']=== 'music'){ echo "selected"; } }?>>music</option>
+                <option value="art" <?php if(isset($_REQUEST['fhobbies'])){ if($_REQUEST['fhobbies']=== 'art'){ echo "selected"; } }?>>art</option>
+                </select>
+            </div>
+             <!-- filteration Query -->
+            <script>
+                $(document).ready(function(){    
+                    $("#fgender").change(function(){
+                        let genderVal = $(this).val();
+                        if(!genderVal== ""){
+                            window.location.href="display.php?<?php if(isset($_GET['sort'])){?>sort=<?php echo $_GET['sort'];} if(isset($_GET['field'])){?>&field=<?php echo $_GET['field'];} if(isset($_REQUEST['search'])){?>&search=<?php echo $_REQUEST['search'];} if(isset($_REQUEST['fhobbies'])){?>&fhobbies=<?php echo $_REQUEST['fhobbies'];}?>&fgender=" +genderVal;
+                        }else{
+                            window.location.href="display.php?<?php if(isset($_GET['sort'])){?>sort=<?php echo $_GET['sort'];} if(isset($_GET['field'])){?>&field=<?php echo $_GET['field'];} if(isset($_REQUEST['search'])){?>&search=<?php echo $_REQUEST['search'];} if(isset($_REQUEST['fhobbies'])){?>&fhobbies=<?php echo $_REQUEST['fhobbies'];}?>";
+                        }
+                    });
+
+                    $("#fhobbies").change(function(){
+                        let hobbieVal = $(this).val();
+                        if(!hobbieVal== ""){
+                            window.location.href="display.php?<?php if(isset($_GET['sort'])){?>sort=<?php echo $_GET['sort'];} if(isset($_GET['field'])){?>&field=<?php echo $_GET['field'];} if(isset($_REQUEST['search'])){?>&search=<?php echo $_REQUEST['search'];} if(isset($_REQUEST['fgender'])){?>&fgender=<?php echo $_REQUEST['fgender'];}?>&fhobbies=" +hobbieVal;
+                        }else{
+                            window.location.href="display.php?<?php if(isset($_GET['sort'])){?>sort=<?php echo $_GET['sort'];} if(isset($_GET['field'])){?>&field=<?php echo $_GET['field'];} if(isset($_REQUEST['search'])){?>&search=<?php echo $_REQUEST['search'];} if(isset($_REQUEST['fgender'])){?>&fgender=<?php echo $_REQUEST['fgender'];}?>";
+                        }
+                    });
+                });
+            </script>
+            <!-- Filteration Structure End -->
+
             <span class="btn"><a href="form.php">Add User</a></span>
              <form action="display.php" method="post" class="srcForm">
                 <input type="text" name="search" value="<?php if(isset($_REQUEST['search'])){ echo $_REQUEST['search']; }?>" placeholder="Search by Name, Gender or Hobbies" id="data" require>
@@ -83,7 +140,7 @@ include 'header.php';
                         var limit = $("#rows").val();
                         $("#rows").change(function(){
                             limit = $(this).val();
-                            window.location.href="display.php?<?php if(isset($_GET['sort'])){?>sort=<?php echo $_GET['sort'];}?>&<?php if(isset($_GET['field'])){?>field=<?php echo $_GET['field'];}?>&<?php if(isset($_REQUEST['search'])){?>search=<?php echo $_REQUEST['search'];}?>&limit=" +limit;
+                            window.location.href="display.php?<?php if(isset($_GET['sort'])){?>sort=<?php echo $_GET['sort'];}?><?php if(isset($_GET['field'])){?>&field=<?php echo $_GET['field'];}?><?php if(isset($_REQUEST['search'])){?>&search=<?php echo $_REQUEST['search'];}?>&limit=" +limit;
                         });
                     });
                 </script>
@@ -111,9 +168,9 @@ include 'header.php';
                     <script>
                         $("#newuser").text("<?php echo $_SESSION['delete'] ?>");
                         $("#newuser").css({"color":"red"});
-                        setTimeout(function(){
-                            $("#newuser").fadeOut("slow",2000);
-                        },3000);
+                        setTimeout(function() {
+                          $('#newuser').fadeOut("slow");
+                        }, 2500);
                     </script>
                     <?php
                     if(isset($_SESSION['delete'])){ ; unset($_SESSION['delete']);}
