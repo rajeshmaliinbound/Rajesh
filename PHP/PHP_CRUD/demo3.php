@@ -27,7 +27,7 @@ $sortIcon = $sort == 'asc' ? '⇧' : '⇩';
 if(isset($_REQUEST['search'])){
     $searchData = $_REQUEST['search'];
 
-    $all_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' ORDER BY $field $sort LIMIT {$offset},{$limit}";
+    $all_sql = "SELECT * FROM registration WHERE name LIKE '%$searchData%' OR gender LIKE '$searchData' OR hobbies LIKE '%$searchData%' LIMIT {$offset},{$limit} ORDER BY $field $sort";
 
     $result = mysqli_query($conn, $all_sql);
 
@@ -37,20 +37,20 @@ if(isset($_REQUEST['search'])){
 
         if(isset($_REQUEST['fgender'])){
             $fgender = $_REQUEST['fgender'];
-            $all_sql = "SELECT * FROM registration WHERE gender LIKE '$fgender' ORDER BY $field $sort LIMIT {$offset},{$limit}";
+            $all_sql = "SELECT * FROM registration WHERE gender LIKE '$fgender' LIMIT {$offset},{$limit}";
             $result = mysqli_query($conn, $all_sql);
         }
 
         if(isset($_REQUEST['fhobbies'])){
             $fhobbies = $_REQUEST['fhobbies'];
-            $all_sql = "SELECT * FROM registration WHERE hobbies LIKE '%$fhobbies%' ORDER BY $field $sort LIMIT {$offset},{$limit}";
+            $all_sql = "SELECT * FROM registration WHERE hobbies LIKE '%$fhobbies%' LIMIT {$offset},{$limit}";
             $result = mysqli_query($conn, $all_sql);
         }
 
         if(isset($_REQUEST['fgender']) && isset($_REQUEST['fhobbies'])){
             $fgender = $_REQUEST['fgender'];
             $fhobbies = $_REQUEST['fhobbies'];
-            $all_sql = "SELECT * FROM registration WHERE gender LIKE '$fgender' AND hobbies LIKE '%$fhobbies%' ORDER BY $field $sort LIMIT {$offset},{$limit}";
+            $all_sql = "SELECT * FROM registration WHERE gender LIKE '$fgender' AND hobbies LIKE '%$fhobbies%' LIMIT {$offset},{$limit}";
             $result = mysqli_query($conn, $all_sql);
          }
 
@@ -158,14 +158,14 @@ include 'header.php';
                 <div style="color: Green;"><h4 id="newuser"></h4></div>
                  <?php
                 //   New Registration Message
-                if(isset($_SESSION['useremail'])){
+                 if(isset($_SESSION['useremail'])){
                     ?>
                     <script>
-                        $("#newuser").text("Registration Successfull!");
-                        $("#newuser").css({"color":"green"});
-                        setTimeout(function() {
-                          $('#newuser').fadeOut("slow");
-                        }, 2500);
+                        document.getElementById("newuser").innerHTML = "Registration Successfull!";
+                        setTimeout(function(){
+                            $("#newuser").fadeOut("slow",2000);
+                            $("#newuser").css({"color":"green"});
+                        },3000);
                     </script>
                     <?php
                     if(isset($_SESSION['useremail'])){ ; unset($_SESSION['useremail']);}
@@ -192,7 +192,7 @@ include 'header.php';
                         $("#newuser").text("<?php echo $_SESSION['edit'] ?>");
                         $("#newuser").css({"color":"green"});
                         setTimeout(function(){
-                            $("#newuser").fadeOut("slow");
+                            $("#newuser").fadeOut("slow",2000);
                         },3000);
                     </script>
                     <?php
@@ -232,28 +232,22 @@ include 'header.php';
                     
                     <div class="pagination">
                         <?php
-                        // paginaton left arrow Logic
                         if(isset($_REQUEST['search'])){
                             if($page > 1){?>
                                <span class="fl"><a href="display.php?searc=<?php echo $searchData?>&page=<?php echo $page-1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><<</a></span><?php 
                             }
                         }
-
-                        elseif(isset($_REQUEST['fgender']) && isset($_REQUEST['fhobbies'])){
-                            if($page > 1){?>
-                                <span class="fl"><a href="display.php?fgender=<?php echo $fgender;?>&fhobbies=<?php echo $fhobbies;?>&page=<?php echo $page-1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><<</a></span><?php 
-                             }
-                        }
-
                         elseif(isset($_REQUEST['fgender'])){
-                            if($page > 1){?>
-                                <span class="fl"><a href="display.php?fgender=<?php echo $fgender;?>&page=<?php echo $page-1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><<</a></span><?php 
+                            $fgender = $_REQUEST['fgender'];
+                            if($page > 1){?>h
+                                <span class="fl"><a href="display.php?fgender=<?php echo $fgender?>&page=<?php echo $page-1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><<</a></span><?php 
                              }
                         }
 
                         elseif(isset($_REQUEST['fhobbies'])){
+                            $fgender = $_REQUEST['fhobbies'];
                             if($page > 1){?>
-                                <span class="fl"><a href="display.php?fhobbies=<?php echo $fhobbies;?>&page=<?php echo $page-1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><<</a></span><?php 
+                                <span class="fl"><a href="display.php?fhobbies=<?php echo $fhobbies?>&page=<?php echo $page-1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><<</a></span><?php 
                              }
                         }
 
@@ -267,10 +261,8 @@ include 'header.php';
                             }
                         }
                         ?>
-
+                       
                     <?php
-
-                    // build dynamic pages of pagination  ...
                     for($i=1;$i<=$totel_page;$i++){
                         if($page == $i){
                             $active = "activepage";
@@ -282,15 +274,13 @@ include 'header.php';
                             ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?search=<?php echo $searchData;?>&page=<?php echo $i;?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><?php echo $i; ?></a></span><?php
                         }
 
-                        elseif(isset($_REQUEST['fgender']) && isset($_REQUEST['fhobbies'])){
-                            ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?fgender=<?php echo $fgender;?>&fhobbies=<?php echo $fhobbies;?>&page=<?php echo $i;?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><?php echo $i; ?></a></span><?php
-                        }
-
                         elseif(isset($_REQUEST['fgender'])){
+                            $fgender = $_REQUEST['fgender'];
                             ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?fgender=<?php echo $fgender;?>&page=<?php echo $i;?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><?php echo $i; ?></a></span><?php
                         }
 
                         elseif(isset($_REQUEST['fhobbies'])){
+                            $fhobbies = $_REQUEST['fhobbies'];
                             ?><span class="pageaa"><a class="<?php echo $active?>" href="display.php?fhobbies=<?php echo $fhobbies;?>&page=<?php echo $i;?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>"><?php echo $i; ?></a></span><?php
                         }
 
@@ -303,17 +293,10 @@ include 'header.php';
                     
                     ?>
                     <?php
-                     // paginaton Right arrow Logic
                     if(isset($_REQUEST['search'])){
                         if($totel_page>$page){?>
                            <span class="fl"><a href="display.php?search=<?php echo $searchData?>&page=<?php echo $page+1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>">>></a></span><?php 
                         }
-                    }
-
-                    elseif(isset($_REQUEST['fgender']) && isset($_REQUEST['fhobbies'])){
-                        if($totel_page>$page){?>
-                            <span class="fl"><a href="display.php?fgender=<?php echo $fgender?>&fhobbies=<?php echo $fhobbies?>&page=<?php echo $page+1?>&field=<?php echo $field;?>&sort=<?php echo $sort;?>&limit=<?php echo $limit;?>">>></a></span><?php 
-                         }
                     }
 
                     elseif(isset($_REQUEST['fgender'])){
@@ -353,7 +336,7 @@ include 'header.php';
                         <th><span class="thData"><a href="?field=name&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];}if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} ?>">Name <?php echo $sortIcon; ?></a></span></th>
                         <th><span class="thData"><a href="?field=email&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];}if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} ?>">Email <?php echo $sortIcon; ?></a></span></th>
                         <th><span class="thData"><a href="?field=phone&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];}if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} ?>">Mobile Number <?php echo $sortIcon; ?></a></span></th>
-                        <th><span class="thData"><a href="?field=gender&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];}if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} ?>">Gender<?php echo $sortIcon; ?></a></span></th>
+                        <th><span class="thData"><a href="?field=gender&sort=<?php echo $sortOrder; if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];}if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} ?>">Gender <?php echo $sortIcon;?></a></span></th>
                         <th><span class="thData"><a href="?field=dob&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];}if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} ?>">DOB <?php echo $sortIcon; ?></a></span></th>
                         <th><span class="thData"><a href="?field=hobbies&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];}if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} ?>">Hobbies <?php echo $sortIcon; ?></a></span></th>
                         <th><span class="thData"><a href="?field=image&sort=<?php echo $sortOrder; ?><?php if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];}if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} ?>">Image <?php echo $sortIcon; ?></a></span></th>
@@ -379,8 +362,8 @@ include 'header.php';
                             <td>
                                 <img width="50" src="upload/<?php echo $row["image"] ?>" alt="Empty">
                             </td>
-                            <td><a href="form.php?field=<?php if(isset($field)){ echo $field; } ?>&sort=<?php if(isset($sort)){ echo $sort; } if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($limit)){ ?>&limit=<?php echo $limit;} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];} if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];}?>&page=<?php echo $page; ?> &id=<?php echo $row["id"]?>">Edit</a></td>
-                            <td><span><a href="delete.php?field=<?php if(isset($field)){ echo $field; } ?>&sort=<?php if(isset($sort)){ echo $sort; } if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];} if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];}?>&page=<?php echo $page; ?> &id=<?php echo $row["id"]?>" onclick="return confirm('Are you sure you want to delete this Row?')">Delete</a></span></td>
+                            <td><a href="form.php?field=<?php if(isset($field)){ echo $field; } ?>&sort=<?php if(isset($sort)){ echo $sort; } if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($limit)){ ?>&limit=<?php echo $limit;}?>&page=<?php echo $page; ?> &id=<?php echo $row["id"]?>">Edit</a></td>
+                            <td><span><a href="delete.php?field=<?php if(isset($field)){ echo $field; } ?>&sort=<?php if(isset($sort)){ echo $sort; } if(isset($_REQUEST['search'])){ ?>&search=<?php echo $searchData;} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];}?>&page=<?php echo $page; ?> &id=<?php echo $row["id"]?>" onclick="return confirm('Are you sure you want to delete this Row?')">Delete</a></span></td>
                             </tr><?php
                         }
                     } else {
