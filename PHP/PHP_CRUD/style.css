@@ -180,7 +180,7 @@ table tr td span a{
 .pagination {
     display: inline-block;
     text-align: center;
-    margin: 20px 500px;
+    margin: 20px 400px;
 }
 .pagination a {
     color: black;
