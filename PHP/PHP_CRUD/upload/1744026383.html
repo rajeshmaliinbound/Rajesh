@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Listings</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      /* background-color: #f4f4f9; */
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+      margin-left: 20px;
+      padding: 10px;
+      width: 30%;
+      font-size: 16px;
+    }
+
+    #job-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #job-listings {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 15px;
+    }
+
+    .job-listing {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .job-listing:hover {
+      /* transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); */
+    }
+
+    #filters {
+      /* text-align: center; */
+      margin-left: 21px;
+      margin-bottom: 20px;
+    }
+
+    #filters label {
+      font-size: 16px;
+      color: #333;
+      margin-right: 10px;
+    }
+
+    .job-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .job-department {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .job-details {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .job-details a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .job-details a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      #job-listings {
+        grid-template-columns: repeat(2, 1fr);
+        /* Adjust to 2 columns on smaller screens */
+      }
+    }
+
+    @media (max-width: 480px) {
+      #job-listings {
+        grid-template-columns: 1fr;
+        /* Single column on very small screens */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Job Listings</h1>
+  <input type="text" id="searchInput" class="search-bar" placeholder="Search for jobs..." />
+
+  <div id="filters">
+    <label for="departmentFilter">Filter by Department:</label>
+    <select id="departmentFilter">
+      <option value="">Select Department</option>
+      <!-- Options will be populated dynamically -->
+    </select>
+  </div>
+  <div id="filters">
+    <label for="LocationsFilter">Filter by Location:</label>
+    <select id="LocationsFilter">
+      <option value="">Select Location</option>
+      <!-- Options will be populated dynamically -->
+    </select>
+  </div>
+
+
+  <div id="job-listings">
+    <p>Loading jobs...</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -64,7 +64,7 @@ if(isset($_GET["id"])){
             <input type="date" id="Dob" value="<?php if(isset($row['dob'])){ echo $row['dob'];} ?>" name="dob">
             <div id="dobValid"><span style="color: red; font-size: 12px;">invalid user (you are not 18+)</span></div>
 
-            <label>Hobbies:&nbsp;&nbsp;<span class="error" id="HobbiesError"></span></label>
+            <label>Hobbies:&nbsp;&nbsp;<span class="error" id="HobbiesError" class="hbinput"></span></label>
             <input type="checkbox" id="Coding" name="hobbies[]" value="Coding"
             <?php
             if(isset($row['hobbies']))
@@ -212,10 +212,19 @@ if(isset($_GET["id"])){
                             }else{
                                 $("#Valid" +blurID).text("please enter a valid "+blurID);
                                 $("#Valid" +blurID).css({"fontSize":"12px","color":"red"});
-                            }   
+                            }
                         }
                     }
                 }
+
+                // if($(this).attr("type") === $("input[name='email']").attr("type")){
+                //     let filevalue = $(this).val();
+                //     var imgPattern = /\.(jpg|jpeg|png|jfif)$/;
+                //     if($(this).val() === ''){
+
+                //     }
+
+                // }
 
                 //--------End Regular Expresion for Email,password,File--------
                 if(!valid){

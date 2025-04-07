@@ -187,7 +187,7 @@ include 'header.php';
                         $("#newuser").css({"color":"green"});
                         setTimeout(function() {
                           $('#newuser').fadeOut("slow");
-                        }, 2500);
+                        }, 1000);
                     </script>
                     <?php
                     if(isset($_SESSION['useremail'])){ ; unset($_SESSION['useremail']);}
@@ -201,7 +201,7 @@ include 'header.php';
                         $("#newuser").css({"color":"red"});
                         setTimeout(function() {
                           $('#newuser').fadeOut("slow");
-                        }, 2500);
+                        }, 1000);
                     </script>
                     <?php
                     if(isset($_SESSION['delete'])){ ; unset($_SESSION['delete']);}
@@ -215,7 +215,7 @@ include 'header.php';
                         $("#newuser").css({"color":"green"});
                         setTimeout(function(){
                             $("#newuser").fadeOut("slow");
-                        },3000);
+                        },1000);
                     </script>
                     <?php
                     if(isset($_SESSION['edit'])){ ; unset($_SESSION['edit']);}
