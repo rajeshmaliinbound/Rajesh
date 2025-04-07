@@ -36,7 +36,6 @@ if(isset($_GET["id"])){
             <label>Password:&nbsp;&nbsp;<span class="error" id="errorPassword"></span></label>
             <span id="ValidPassword"></span>
             <input type="password" value="<?php if(isset($row['password'])){ echo $row['password'];} ?>" id="Password" name="password" v placeholder="Enter Password">
-            <!-- <input type="password" value="" name="password" v placeholder="Confirm Password"> -->
 
             <label>Mobile Number:&nbsp;&nbsp;<span class="error" id="errorNumber"></span><span class="sbmt"></span></label>
             <input type="tel" id="Number" value="<?php if(isset($row['phone'])){ echo $row['phone'];} ?>" name="mobile" placeholder="Enter Number">
@@ -133,6 +132,11 @@ if(isset($_GET["id"])){
             <input type="submit" id="submit" value="Submit">
             </div>
         </form>
+         <?php
+         if(isset($_REQUEST['page'])){?>
+            <span id="back"><a href="display.php<?php if(isset($_REQUEST['sort'])){?>?sort=<?php echo $_REQUEST['sort'];}?><?php if(isset($_REQUEST['field'])){?>&field=<?php echo $_REQUEST['field'];}?><?php if(isset($_REQUEST['search'])){?>&search=<?php echo $_REQUEST['search'];} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];} if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} if(isset($_REQUEST['page'])){ ?>&page=<?php echo $_REQUEST['page'];}?>">Back</a></span>
+         <?php }
+          ?>
         <div class="login-link">
             <p>Already have an account?<a href="#">Login Now</a></p>
         </div>
