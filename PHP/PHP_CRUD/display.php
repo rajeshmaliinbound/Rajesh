@@ -156,14 +156,14 @@ include 'header.php';
 
               <!-- Show data using selected number of rows -->
               <div>
-                    Select Number of Rows:<select name="" id="rows" style="width: 4%; margin-top: 10px; margin-bottom: 0px;">
+                    Select Number of Rows:<select name="" id="rows" style="width: 5%; margin-top: 10px; margin-bottom: 0px;">
                         <option value="5" <?php if(isset($_REQUEST['limit']))  { if($limit == 5){ echo "selected";} }?>>5</option>
                         <option value="10" <?php if(isset($_REQUEST['limit'])) { if($limit == 10){ echo "selected";} }?>>10</option>
                         <option value="15" <?php if(isset($_REQUEST['limit'])) { if($limit == 15){ echo "selected";} }?>>15</option>
                         <option value="20" <?php if(isset($_REQUEST['limit'])) { if($limit == 20){ echo "selected";} }?>>20</option>
                         <option value="25" <?php if(isset($_REQUEST['limit'])) { if($limit == 25){ echo "selected";} }?>>25</option>
                         <option value="30" <?php if(isset($_REQUEST['limit'])) { if($limit == 30){ echo "selected";} }?>>30</option>
-                        <option value="200" <?php if(isset($_REQUEST['limit'])) { if($limit == 200){ echo "selected";} }?>>100</option>
+                        <option value="50" <?php if(isset($_REQUEST['limit'])) { if($limit == 50){ echo "selected";} }?>>50</option>
                     </select>
                 </div>
                 <script>

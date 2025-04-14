@@ -22,17 +22,17 @@
                     if($(this).val()=== ''){
                             $("#error" +inputID).text("please enter " +inputID);
                     }
-                    if($(this).attr("type")=== "file")
-                    {
-                        $("#error" +inputID).text("please select " +inputID);
-                    }
+                    // if($(this).attr("type")=== "file")
+                    // {
+                    //     $("#error" +inputID).text("please select " +inputID);
+                    // }
                 });
                 
 
             if(!valid){
                 if($(this).attr("type")=== "file")
                 {
-                    $("#error" +inputID).text("please select " +inputID);
+                    // $("#error" +inputID).text("please select " +inputID);
                 }else{
                     $("#error" +inputID).text("please enter " +inputID);
                     $("#error" +inputID).css({"color":" rgb(214, 57, 57)"});

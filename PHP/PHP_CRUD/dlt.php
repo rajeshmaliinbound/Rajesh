@@ -1,30 +1,30 @@
 <?php
-include 'connection.php';
 session_start();
-$Id = $_GET['id'];
+include 'connection.php';
 
-$query = "DELETE FROM `registration` WHERE `id`=$Id";
-if(isset($_REQUEST['limit'])){
-    $limit = $_REQUEST['limit'];
+$Name = $_POST["name"];
+$Email = $_POST['email'];
+$Password = md5($_POST['password']);
+$Number = $_POST['mobile'];
+$Gender = $_POST['gender'];
+$dob = $_POST['dob'];
+$Hobbies = implode(",", $_POST['hobbies']);
+$image = '';
+
+if($_FILES['image']){
+    $targetDir = 'upload/';
+    $image = time() . '.' . pathinfo($_FILES["image"]["name"],PATHINFO_EXTENSION);
+    $targetFile = $targetDir .$image;
+    move_uploaded_file($_FILES["image"]["tmp_name"],$targetFile);
 }
 
-$result = mysqli_query($conn,$query);
-$rows = $_SESSION['deletepath']-1;
-unset($_SESSION['deletepath']);
-$totel_page = ceil($rows/$limit);
-if($totel_page >= $_REQUEST['page']){
-    $page = $_REQUEST['page'];
-}else{
-    $page = $totel_page;
-}
+$sql = "INSERT INTO `registration`(`name`, `email`, `password`, `phone`, `gender`, `dob`, `hobbies`, `image`)
+         VALUES ('$Name','$Email','$Password','$Number','$Gender','$dob','$Hobbies','$image')";
+$result = mysqli_query($conn,$sql);
 
 if($result){
-    $_SESSION['delete']= "Delete Successfull!";
-    ?>
-    <script>
-        window.location.href="display.php<?php if(isset($_REQUEST['sort'])){?>?sort=<?php echo $_REQUEST['sort'];}?><?php if(isset($_REQUEST['field'])){?>&field=<?php echo $_REQUEST['field'];}?><?php if(isset($_REQUEST['search'])){?>&search=<?php echo $_REQUEST['search'];} if(isset($_REQUEST['limit'])){ ?>&limit=<?php echo $_REQUEST['limit'];} if(isset($_REQUEST['fgender'])){ ?>&fgender=<?php echo $_REQUEST['fgender'];} if(isset($_REQUEST['fhobbies'])){ ?>&fhobbies=<?php echo $_REQUEST['fhobbies'];} if(isset($page)){ ?>&page=<?php echo $page;}?>";
-    </script>
-    <?php
+    $_SESSION['useremail'] = $Email;
+    header("location:display.php");
 }else{
     echo "Faild:" .mysqli_error($conn);
 }
