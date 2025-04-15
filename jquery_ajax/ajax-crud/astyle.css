@@ -1,0 +1,184 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  position: relative;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+h2 {
+  color: #333;
+  margin: 0;
+  font-size: 24px;
+}
+
+.add-btn {
+  position: absolute;
+  left: 0;
+  padding: 8px 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-btn:hover {
+  background-color: #45a049;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+table a{
+  text-decoration: none;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 12px 9px;
+  text-align: left;
+  background-color: #fff;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.edit-btn {
+  background-color: #2196F3;
+  color: white;
+  margin-right: 4px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Form Styling */
+#userForm {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 400px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px 25px;
+  z-index: 1000;
+}
+
+#userForm h3 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  text-align: center;
+  color: #333;
+}
+
+#userForm label {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 4px;
+  display: block;
+  font-weight: 500;
+}
+
+#userForm input[type="text"],
+#userForm input[type="email"],
+#userForm input[type="password"],
+#userForm input[type="number"] {
+  width: calc(100% - 20px);
+  padding: 6px 10px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-left: 10px;
+  margin-right: 10px;
+  transition: all 0.2s ease;
+}
+
+#userForm input:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 12px;
+  margin-left: 10px;
+  align-items: center;
+}
+
+.radio-group label,
+.checkbox-group label {
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 7px 16px;
+}
+
+.close-btn {
+  background-color: #999;
+  color: white;
+  padding: 7px 16px;
+}
+
+.form-buttons .btn {
+  font-size: 14px;
+  font-weight: 500;
+}

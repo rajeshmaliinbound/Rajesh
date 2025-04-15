@@ -1,0 +1,57 @@
+table{
+    width: 50%;
+    text-align: center;
+    padding: 5px;
+}
+
+table, th, td {
+    border: 2px solid gray;
+    border-collapse: collapse;
+}
+
+table tr td a{
+    text-decoration: none;
+    padding: 2px;
+    color: green;
+}
+
+table tr td a:hover{
+    color: blue;
+}
+
+table tr td span a{
+    color: red;
+}
+
+.addnew{
+    text-align: right;
+    margin-right: 100px;
+}
+
+.formshow{
+    text-align: right;
+    margin: 50px;
+}
+
+.Addform{
+    text-align: right;
+}
+
+.Addform h4{
+    margin-right: 80px;
+}
+
+.showinsert{
+    color: green;
+    text-align: center;
+    width: 50%;
+    margin-top: 5px;
+}
+
+#submit{
+    border: 1px solid;
+    padding: 3px;
+    background-color: rgb(14, 148, 47);
+    color: rgb(234, 236, 234);
+    text-decoration: none;
+}

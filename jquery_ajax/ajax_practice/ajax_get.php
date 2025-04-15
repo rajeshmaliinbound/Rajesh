@@ -10,19 +10,17 @@
 </head>
 <body>
 <form action="">
-    <input type="text" id="name">
-    <input type="email" id="email">
+    Name: <input type="text" id="name"> <br><br>
+    Email: <input type="email" id="email">
     
-    <a href="#" id="submit">Submit</a>
-</form>    
-<div class="show">Hello</div>
+    <a href="#" id="submit" style="text-decoration: none;">Submit</a>
+</form>
+<div class="show"></div>
 <script>
     $(document).ready(function(){
         $("#submit").click(function(){
             var name = $("#name").val();
             var email = $("#email").val();
-            console.log(name)
-            console.log(email)
             $.ajax({
                 url : "action.php",
                 type : "post",
