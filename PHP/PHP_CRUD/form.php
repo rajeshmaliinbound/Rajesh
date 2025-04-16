@@ -83,7 +83,7 @@ if(isset($_REQUEST['exitshobbies']))
 
             <input type="checkbox" id="Music" name="hobbies[]" value="music"
             <?php
-            if(isset($_SESSION['email_exist_edit'])){ if(isset($hobbiData)) { if(in_array("music", $hobbiData)){ echo "checked"; }} }else{ if(isset($row['hobbies'])){ if(in_array("music", $hobbies)){ echo "checked"; } } }    
+            if(isset($_SESSION['email_exist_edit'])){ if(isset($hobbiData)) { if(in_array("music", $hobbiData)){ echo "checked"; }} }else{ if(isset($row['hobbies'])){ if(in_array("music", $hobbies)){ echo "checked"; } } }
             ?>><label for="Music" style="display: inline;">music</label>
 
             <input type="checkbox" id="Art" name="hobbies[]" value="art"
