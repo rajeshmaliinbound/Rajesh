@@ -1,4 +1,3 @@
-// fetch all Data default show
 getdata();
 
 // function of fetch all Data
@@ -17,39 +16,7 @@ function getdata() {
     });
 }
 
-// start Insert Data using ajax request
-function insertData(){
-    var name = $("#iname").val();
-    var email = $("#iemail").val();
-    var password = $("#ipassword").val();
-    var mobile = $("#imobile").val();
-    var file = $("#iFile").val();
-    var gender = $("input[class='igender']:checked").val();
-    var hobbies = [];
-    $('.ihobbie:checked').each(function(i) {
-        hobbies[i] = $(this).val();
-    });
-    var insert = "action";
-    $.ajax({
-        url: "action.php",
-        type: "post",
-        data: {
-            "name": name,
-            "email": email,
-            "password": password,
-            "mobile": mobile,
-            "gender": gender,
-            "hobbies": hobbies,
-            "image": file,
-            "insert": insert
-        },
-        success: function(insertreturn) {
-            $('#userForm').fadeOut();
-            getdata();
-        }
-    });
-}
-// End Insert Data using ajax request
+
 
 // delete operation
 function deletedata(id) {
@@ -64,9 +31,11 @@ function deletedata(id) {
             "deleterow": deleterecord
         },
         success : function(response){
-            $(".show-delete-msg").html(response);
+            $("#show-msg").html(response);
             getdata();
-            $(".show-delete-msg").fadeOut(3000);
+            setTimeout(function(){
+                $(".deletemsg").fadeOut("slow");
+            },1000);
         }
     });
     }
@@ -94,37 +63,25 @@ function closeeditform(){
     $("#usereditForm").fadeOut();
 }
 
-// start Update Edit Data using ajax request
+// Update Edited Data using ajax request
 function updateData(){
-    var updateid = $("#idinput").val()
-    var name = $("#uname").val();
-    var email = $("#uemail").val();
-    var password = $("#upassword").val();
-    var mobile = $("#umobile").val();
-    var gender = $("input[class='ugender']:checked").val();
-    var hobbies = [];
-    $('.uhobbie:checked').each(function(i) {
-        hobbies[i] = $(this).val();
-    });
     var updateData = "action";
-
+    var formedit = $('#editUserForm')[0];
+    var editformData = new FormData(formedit);
+    editformData.append('editupdate', 'updateData');
     $.ajax({
         url: "action.php",
-        type: "post",
-        data: {
-            "id": updateid,
-            "name": name,
-            "email": email,
-            "password": password,
-            "mobile": mobile,
-            "gender": gender,
-            "hobbies": hobbies,
-            "updateData": updateData
-        },
+        type: "POST",
+        data: editformData,
+        contentType: false,
+        processData: false,
         success: function(response) {
+            $("#show-msg").html(response);
             $('#usereditForm').fadeOut();
             getdata();
+            setTimeout(function(){
+                $(".edittmsg").fadeOut("slow");
+            },1000);
         }
     });
 }
-// End Update Edit Data using ajax request

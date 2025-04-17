@@ -57,6 +57,45 @@
             outline: none;
             box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
         }
+
+        #show-msg{
+            height: 22px;
+            text-align: center;
+            margin: 10px;
+            color: green;
+        }
+
+        #show-msg h5{
+            padding: 0px;
+            margin: 0px;
+            font-size: 17px;
+        }
+
+        .table-actions{
+            display: flex;
+            padding: 5px;
+        }
+
+        .search-data input{
+            width: 250px;
+            padding: 5px;
+            border: 1px solid green;
+            border-radius: 5px;
+            margin-left: 22%;
+        }
+
+        .row-number{
+            margin-left: 25%;
+        }
+
+        .filteration{
+            margin-left: 70px;
+        }
+
+        .filteration h6{
+            display: inline;
+            font-size: 17px;
+        }
     </style>
 </head>
 
@@ -66,48 +105,88 @@
             <button class="add-btn" id="openForm">+ Add User</button>
             <h2>All Users</h2>
         </div>
-        <!-- show add new user message -->
-        <div class="show-insert-msg"></div>
-        <!-- <div class="show-delete-msg"></div> -->
 
-        <!-- start create table structure-->
+        <!-- Search, rows-select or Filteration structure -->
+        <div class="table-actions">
+
+            <!-- for search -->
+            <div class="search-data">
+               <input type="text" id="search-input" placeholder="search by name, gender or hobbies">
+            </div>
+
+            <!-- for select rows limit -->
+            <div class="row-number">
+            Rows: <select id="limitdata">
+                   <option value="">Select Rows</option>
+                   <option value="5">5</option>
+                   <option value="10">10</option>
+                   <option value="15">15</option>
+                   <option value="20">20</option>
+                   <option value="30">30</option>
+                   <option value="50">50</option>
+                </select>
+            </div>
+
+            <!-- for filteration by gender or hobbies  -->
+            <div class="filteration">
+                <h6>Filteration: </h6>
+                <select id="fgender">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                <select id="fhobbies">
+                    <option value="">Select Hobbies</option>
+                    <option value="coding">coding</option>
+                    <option value="traveling">traveling</option>
+                    <option value="sports">sports</option>
+                    <option value="music">music</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- show message for add new user, Edit user, delete user -->
+        <div id="show-msg"></div>
+        
+        <!--Table structure-->
         <div class="allDatable"></div>
-        <!-- End create table -->
 
+        <!-- edit form -->
         <div id="usereditForm"></div>
 
-        <!-- Add user Form Start-->
+        <!-- Add New User Form Start-->
         <div id="userForm">
             <h3>Add User</h3>
-            <form id="addUserForm" aria-hidden="true" tabindex="-1">
+            <form id="addUserForm" enctype="multipart/form-data">
                 <label for="name">Name:</label>
-                <input type="text" id="iname">
+                <input type="text" name="iname">
 
                 <label for="email">Email:</label>
-                <input type="email" id="iemail">
+                <input type="email" name="iemail">
 
                 <label for="password">Password:</label>
-                <input type="password" id="ipassword" >
+                <input type="password" name="ipassword">
 
                 <label for="mobile">Mobile Number:</label>
-                <input type="number" id="imobile">
+                <input type="number" name="imobile">
 
                 <label>Gender:</label>
                 <div class="radio-group">
-                    <label><input type="radio" class="igender" name="gender" value="Male"> Male</label>
-                    <label><input type="radio" class="igender" name="gender" value="Female"> Female</label>
+                    <label><input type="radio" name="igender" value="Male"> Male</label>
+                    <label><input type="radio" name="igender" value="Female"> Female</label>
                 </div>
 
                 <label>Hobbies:</label>
                 <div class="checkbox-group">
-                    <label><input type="checkbox" class="ihobbie" name="hobbies[]" value="coding"> coding</label>
-                    <label><input type="checkbox" class="ihobbie" name="hobbies[]" value="traveling"> traveling</label>
-                    <label><input type="checkbox" class="ihobbie" name="hobbies[]" value="sports"> sports</label>
-                    <label><input type="checkbox" class="ihobbie" name="hobbies[]" value="music"> music</label>
+                    <label><input type="checkbox" name="ihobbies[]" value="coding"> coding</label>
+                    <label><input type="checkbox" name="ihobbies[]" value="traveling"> traveling</label>
+                    <label><input type="checkbox" name="ihobbies[]" value="sports"> sports</label>
+                    <label><input type="checkbox" name="ihobbies[]" value="music"> music</label>
                 </div>
 
-                <label for="file">Select File</label>
-                <input type="file" id="iFile" name="image">
+                <label>Select File</label>
+                <input type="file" value="" name="iimage">
 
                 <div class="form-buttons">
                     <!-- <a href="#" style="text-decoration: none;" class="btn submit-btn">Submit</a> -->
@@ -119,6 +198,30 @@
         <!-- Add user Form End-->
     </div>
     <script>
+        // start Insert Data using ajax request
+        function insertData(){
+            var insertform = "action";
+            var form = $('#addUserForm')[0];
+            var formData = new FormData(form);
+            formData.append('insert', 'insertform');
+            $.ajax({
+                url: "action.php",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(insertreturn){
+                    $("#show-msg").html(insertreturn);
+                    $('#userForm').fadeOut();
+                    getdata();
+                    setTimeout(function(){
+                        $(".insertmsg").fadeOut("slow");
+                    },1000);
+                }
+            });
+        }
+        // End Insert Data using ajax request
+
         $('#openForm').click(function(){
             $("#addUserForm")[0].reset();
             $("#usereditForm").fadeOut();
@@ -126,8 +229,7 @@
         });
         $('#closeForm').click(function() {
             $('#userForm').fadeOut();
-        });
+        });        
     </script>
 </body>
-
 </html>
