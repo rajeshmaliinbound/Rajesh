@@ -96,6 +96,34 @@
             display: inline;
             font-size: 17px;
         }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pagination button {
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: none;
+            background-color: whitesmoke;
+        }
+
+        .pagination button:hover{
+            background-color: gray;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .activepage{
+            background-color: gray !important;
+            border-radius: 5px;
+            color: white;
+        }
+        
     </style>
 </head>
 
@@ -116,8 +144,7 @@
 
             <!-- for select rows limit -->
             <div class="row-number">
-            Rows: <select id="limitdata">
-                   <option value="">Select Rows</option>
+            Rows: <select id="limitdata" onclick="getdata()">
                    <option value="5">5</option>
                    <option value="10">10</option>
                    <option value="15">15</option>
@@ -148,9 +175,10 @@
 
         <!-- show message for add new user, Edit user, delete user -->
         <div id="show-msg"></div>
-        
         <!--Table structure-->
-        <div class="allDatable"></div>
+        <div class="allDatable">
+            
+        </div>
 
         <!-- edit form -->
         <div id="usereditForm"></div>
@@ -158,7 +186,7 @@
         <!-- Add New User Form Start-->
         <div id="userForm">
             <h3>Add User</h3>
-            <form id="addUserForm" enctype="multipart/form-data">
+            <form id="addUserForm" enctype="multipart/form-data" method="post">
                 <label for="name">Name:</label>
                 <input type="text" name="iname">
 
@@ -189,8 +217,7 @@
                 <input type="file" value="" name="iimage">
 
                 <div class="form-buttons">
-                    <!-- <a href="#" style="text-decoration: none;" class="btn submit-btn">Submit</a> -->
-                    <button type="button" class="btn submit-btn" onclick="insertData()">Submit</button>
+                    <button type="submit" class="btn submit-btn">Submit</button>
                     <button type="button" class="btn close-btn" id="closeForm">Close</button>
                 </div>
             </form>
@@ -198,7 +225,35 @@
         <!-- Add user Form End-->
     </div>
     <script>
+        // function of fetch all Data
+        getdata();
+        function getdata(page=1, limit=5, column='id', order='asc') {
+            limit = $("#limitdata").val();
+            var allrecords = "action";
+            var num = 0;
+            $.ajax({
+                url: "action.php",
+                type: 'post',
+                data: {
+                    "page": page,
+                    "limit": limit,
+                    "field": column,
+                    "sort": order,
+                    "allrecords": allrecords
+                },
+                success : function(response){
+                    $(".allDatable").html(response);
+                    $("#"+column).append(arrow)
+                }
+            });
+        }
+
         // start Insert Data using ajax request
+        $("#addUserForm").submit(function(event){
+            event.preventDefault();
+            insertData();
+        });
+
         function insertData(){
             var insertform = "action";
             var form = $('#addUserForm')[0];
@@ -229,7 +284,21 @@
         });
         $('#closeForm').click(function() {
             $('#userForm').fadeOut();
-        });        
+        });
+
+      // sorting table data
+       $(document).on('click', '.field', function(){
+        var column = $(this).attr("id");
+        var page = $(this).attr("value");
+        var order = $(this).data("order");
+        var limit = $("#limitdata").val();
+        if(order == 'desc'){
+            arrow = ' ⇩'
+        }else{
+            arrow = ' ⇧'
+        }
+        getdata(page,limit,column,order);
+       });
     </script>
 </body>
 </html>

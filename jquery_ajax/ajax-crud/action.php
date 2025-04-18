@@ -1,28 +1,63 @@
 <?php
 include 'dbconn.php';
 
-//fetch all records from database & show all records operation on ajax request
+//fetch all records from database & show all records on any ajax request
 if (isset($_REQUEST['allrecords'])) {
-    $allDataquery = "SELECT * FROM `usersdata`";
+    //sorting ascending & dscending order formate of table Data
+    $field = isset($_POST['field']) ? $_POST['field'] : 'id';
+    $sort = isset($_POST['sort']) && $_POST['sort'] == 'desc' ? 'desc' : 'asc' ;
+    $sortOrder = $sort == 'desc' ? 'asc' : 'desc';
+    // $sortIcon = $sort == 'asc' ? '⇧' : '⇩';
+
+    $limit = isset($_POST['limit']) ? (int) $_POST['limit'] : 5;
+    $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
+    $offset = ($page-1)*$limit;
+    
+    $allDataquery = "SELECT * FROM usersdata ORDER BY $field $sort";// query of show all data in full table...
     $fetchall = mysqli_query($conn, $allDataquery);
+
+    $pagequery = "SELECT * FROM usersdata ORDER BY $field $sort LIMIT {$offset},{$limit}";// query of show all data using page limit...
+    $limitresult = mysqli_query($conn, $pagequery);
     $result_array = [];
 
-    if (mysqli_num_rows($fetchall) > 0) {
+    if (mysqli_num_rows($limitresult) > 0) {
+        $totel_row = mysqli_num_rows($fetchall);// totel rows of requesting data for pagination
+        $totel_page = ceil($totel_row/$limit);
 ?>
+        <!-- Start pagination -->
+        <div class="pagination">
+            <?php if($page > 1){ ?>
+            <button type="button" onclick="getdata(<?php echo $page-1; ?>)"><< </button>
+            <?php } ?>
+            <?php for($i=1;$i<=$totel_page;$i++){
+                if($page == $i){
+                    $active = "activepage";
+                }else{
+                    $active = "";
+                }
+                 ?>
+                <button type="button" class="<?php echo $active?>" onclick="getdata(<?php echo $i; ?>)"><?php echo $i; ?></button> <?php
+            } ?>
+            <?php if($totel_page>$page){ ?>
+            <button type="button" onclick="getdata(<?php echo $page+1; ?>)">>> </button>
+            <?php } ?>
+        </div>
+        <!-- End pagination -->
+
         <table class="tabledata">
             <tr>
                 <th>Rows</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Mobile Number</th>
-                <th>Gender</th>
-                <th>Hobbies</th>
-                <th>Image</th>
+                <th class="field" value="<?php echo $page;?>" data-order="<?php echo $sortOrder; ?>" id="name">Name</th>
+                <th class="field" value="<?php echo $page;?>" data-order="<?php echo $sortOrder; ?>" id="email">Email</th>
+                <th class="field" value="<?php echo $page;?>" data-order="<?php echo $sortOrder; ?>" id="phone">Mobile Number</th>
+                <th class="field" value="<?php echo $page;?>" data-order="<?php echo $sortOrder; ?>" id="gender">Gender</th>
+                <th class="field" value="<?php echo $page;?>" data-order="<?php echo $sortOrder; ?>" id="hobbies">Hobbies</th>
+                <th >Image</th>
                 <th colspan="2">Action</th>
             </tr>
             <?php
-            $number = 0;
-            foreach ($fetchall as $row) { ?>
+            $number = $offset;
+            foreach ($limitresult as $row) { ?>
                 <?php $number = $number+1 ?>
                 <tr>
                     <td><?php echo $number ?></td>
@@ -164,7 +199,7 @@ if (isset($_REQUEST['editrow'])) {
         
         <div class="form-buttons">
             <!-- <a href="#" style="text-decoration: none;" class="btn submit-btn">Submit</a> -->
-            <button type="button" class="btn submit-btn" onclick="updateData()">Submit</button>
+            <button type="submit" class="btn submit-btn">Submit</button>
             <button type="button" class="btn close-btn" onclick="closeeditform()" id="editclosebtn">Close</button>
         </div>
     </form>
@@ -173,7 +208,7 @@ if (isset($_REQUEST['editrow'])) {
 
 
 //  Update user Data
- if (isset($_REQUEST['editupdate'])) {
+if (isset($_REQUEST['editupdate'])) {
     $Id = isset($_POST['uid']) ? $_POST['uid'] : "";
     $Name = trim(isset($_POST['uname']) ? $_POST['uname'] : "");
     $Email = trim(isset($_POST['uemail']) ? $_POST['uemail'] : "");
@@ -183,13 +218,27 @@ if (isset($_REQUEST['editrow'])) {
     $Hobbies = implode(",", isset($_POST['uhobbies']) ? $_POST['uhobbies'] : "");
     $image = isset($_POST['hiddenimage']) ? $_POST['hiddenimage'] : "";
 
+
     if(!empty($_FILES['uimage']['name'])){
+
+        // old file unlink after select new file
+        $imgquery = "SELECT image FROM `usersdata` WHERE `id` = $Id";
+        $result = mysqli_query($conn, $imgquery);
+        $imgrow = mysqli_fetch_assoc($result);
+        if($imgrow){
+            $imagePath = $imgrow['image'];// find image from database 
+            $imageFullPath = 'upload/' . $imagePath;
+
+            if (file_exists($imageFullPath)) { // unlink image from upload folder
+                unlink($imageFullPath);
+            }
+        } // end unlink
+
         $targetDir = 'upload/';
         if(!is_dir($targetDir))
         {
             $targetDir = mkdir($targetDir, 0777, true);
-        }
-    
+        }    
         $image = time() . '.' . pathinfo($_FILES["uimage"]["name"],PATHINFO_EXTENSION);
         $targetFile = $targetDir .$image;
         move_uploaded_file($_FILES["uimage"]["tmp_name"],$targetFile);
@@ -204,71 +253,6 @@ if (isset($_REQUEST['editrow'])) {
         ?><h4 style="color: green; text-align: center;" class="edittmsg"><?php echo "User Data Edited Successfully...!"; ?></h4><?php
     }else{
         ?><h4 style="color: red;text-align: center;" class="edittmsg"><?php echo "Update faild...!"; ?></h4><?php
-    }
-}
-
-//fetch all records from database & show all records operation on ajax request
-if (isset($_REQUEST['search'])) {
-    $searchData = trim(isset($_POST['search']) ? $_POST['search'] : "");
-    echo $searchData;
-    exit;
-    $allDataquery = "SELECT * FROM `usersdata`";
-    $fetchall = mysqli_query($conn, $allDataquery);
-    $result_array = [];
-
-    if (mysqli_num_rows($fetchall) > 0) {
-?>
-        <table class="tabledata">
-            <tr>
-                <th>Rows</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Mobile Number</th>
-                <th>Gender</th>
-                <th>Hobbies</th>
-                <th>Image</th>
-                <th colspan="2">Action</th>
-            </tr>
-            <?php
-            $number = 0;
-            foreach ($fetchall as $row) { ?>
-                <?php $number = $number+1 ?>
-                <tr>
-                    <td><?php echo $number ?></td>
-                    <td><?php echo $row['name'] ?></td>
-                    <td><?php echo $row['email'] ?></td>
-                    <td><?php echo $row['phone'] ?></td>
-                    <td><?php echo $row['gender'] ?></td>
-                    <td><?php echo $row['hobbies'] ?></td>
-                    <td>
-                       <img width="50" src="upload/<?php echo $row["image"] ?>" alt="Empty">
-                    </td>
-                    <td>
-                        <button class="btn edit-btn" onclick="editdata(<?php echo $row['id'] ?>)">Edit</button>
-                        <button class="btn delete-btn" onclick="deletedata(<?php echo $row['id'] ?>)">Delete</button>
-                    </td>
-                </tr>
-            <?php }
-            ?>
-        </table>
-    <?php
-    }else{
-        ?>
-        <table class="tabledata">
-            <tr>
-                <th>Rows</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Mobile Number</th>
-                <th>Gender</th>
-                <th>Hobbies</th>
-                <th>Action</th>
-            </tr>
-            <tr>
-                <td colspan="7" style="text-align: center;">Record Not Found</td>
-            </tr>
-        </table>
-        <?php
     }
 }
  ?>

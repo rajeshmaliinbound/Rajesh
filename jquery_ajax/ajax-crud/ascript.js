@@ -1,23 +1,3 @@
-getdata();
-
-// function of fetch all Data
-function getdata() {
-    var allrecords = "action";
-    var num = 0;
-    $.ajax({
-        url: "action.php",
-        type: 'post',
-        data: {
-            "allrecords": allrecords
-        },
-        success : function(response){
-            $(".allDatable").html(response);
-        }
-    });
-}
-
-
-
 // delete operation
 function deletedata(id) {
     var conf = confirm("Are You Sure?");
@@ -42,6 +22,11 @@ function deletedata(id) {
 }
 
 // Edit operation
+$("#editUserForm").submit(function(event){
+    event.preventDefault();
+    insertData();
+});
+
 function editdata(id) {
     $('#userForm').fadeOut();
     $("#usereditForm").fadeIn();
