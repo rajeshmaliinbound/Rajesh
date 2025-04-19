@@ -5,9 +5,8 @@ include 'dbconn.php';
 if (isset($_REQUEST['allrecords'])) {
     //sorting ascending & dscending order formate of table Data
     $field = isset($_POST['field']) ? $_POST['field'] : 'id';
-    $sort = isset($_POST['sort']) && $_POST['sort'] == 'desc' ? 'desc' : 'asc' ;
-    $sortOrder = $sort == 'desc' ? 'asc' : 'desc';
-    // $sortIcon = $sort == 'asc' ? '⇧' : '⇩';
+    $sort = isset($_POST['sort']) ? $_POST['sort'] : 'asc';
+    $sortOrder = $sort == 'asc' ? 'desc' : 'asc';
 
     $limit = isset($_POST['limit']) ? (int) $_POST['limit'] : 5;
     $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
@@ -26,8 +25,10 @@ if (isset($_REQUEST['allrecords'])) {
 ?>
         <!-- Start pagination -->
         <div class="pagination">
+            <input id="fieldPass" type="hidden" value="<?php echo $field;?>">
+            <input id="sortPass" type="hidden" value="<?php echo $sort;?>">
             <?php if($page > 1){ ?>
-            <button type="button" onclick="getdata(<?php echo $page-1; ?>)"><< </button>
+            <button type="button" class="pagebutton" value="<?php echo $sort;?>" onclick="getdata(<?php echo $page-1;?>,<?php echo $limit;?>,`<?php echo $field;?>`,`<?php echo $sort;?>`)"><< </button>
             <?php } ?>
             <?php for($i=1;$i<=$totel_page;$i++){
                 if($page == $i){
@@ -36,10 +37,10 @@ if (isset($_REQUEST['allrecords'])) {
                     $active = "";
                 }
                  ?>
-                <button type="button" class="<?php echo $active?>" onclick="getdata(<?php echo $i; ?>)"><?php echo $i; ?></button> <?php
+                <button type="button" class="pagebutton" value="<?php echo $i;?>" id="<?php echo $active?>" onclick="getdata(<?php echo $i;?>,<?php echo $limit;?>,`<?php echo $field;?>`,`<?php echo $sort;?>`)"><?php echo $i; ?></button> <?php
             } ?>
             <?php if($totel_page>$page){ ?>
-            <button type="button" onclick="getdata(<?php echo $page+1; ?>)">>> </button>
+            <button type="button" class="pagebutton" value="<?php echo $sort;?>" onclick="getdata(<?php echo $page+1;?>,<?php echo $limit;?>,`<?php echo $field;?>`,`<?php echo $sort;?>`)">>> </button>
             <?php } ?>
         </div>
         <!-- End pagination -->
@@ -47,6 +48,7 @@ if (isset($_REQUEST['allrecords'])) {
         <table class="tabledata">
             <tr>
                 <th>Rows</th>
+                <th class="field" value="<?php echo $page;?>" data-order="<?php echo $sortOrder; ?>" id="id">Id</th>
                 <th class="field" value="<?php echo $page;?>" data-order="<?php echo $sortOrder; ?>" id="name">Name</th>
                 <th class="field" value="<?php echo $page;?>" data-order="<?php echo $sortOrder; ?>" id="email">Email</th>
                 <th class="field" value="<?php echo $page;?>" data-order="<?php echo $sortOrder; ?>" id="phone">Mobile Number</th>
@@ -61,6 +63,7 @@ if (isset($_REQUEST['allrecords'])) {
                 <?php $number = $number+1 ?>
                 <tr>
                     <td><?php echo $number ?></td>
+                    <td><?php echo $row['id'] ?></td>
                     <td><?php echo $row['name'] ?></td>
                     <td><?php echo $row['email'] ?></td>
                     <td><?php echo $row['phone'] ?></td>

@@ -118,7 +118,7 @@
             color: white;
         }
 
-        .activepage{
+        #activepage{
             background-color: gray !important;
             border-radius: 5px;
             color: white;
@@ -144,7 +144,7 @@
 
             <!-- for select rows limit -->
             <div class="row-number">
-            Rows: <select id="limitdata" onclick="getdata()">
+            Rows: <select id="limitdata">
                    <option value="5">5</option>
                    <option value="10">10</option>
                    <option value="15">15</option>
@@ -175,9 +175,8 @@
 
         <!-- show message for add new user, Edit user, delete user -->
         <div id="show-msg"></div>
-        <!--Table structure-->
-        <div class="allDatable">
-            
+        <!--Table structure with pagination-->
+        <div class="allDatable">            
         </div>
 
         <!-- edit form -->
@@ -231,6 +230,11 @@
             limit = $("#limitdata").val();
             var allrecords = "action";
             var num = 0;
+            if(order == 'desc'){
+            arrow = ' ⇩'
+            }else{
+                arrow = ' ⇧'
+            }
             $.ajax({
                 url: "action.php",
                 type: 'post',
@@ -288,16 +292,24 @@
 
       // sorting table data
        $(document).on('click', '.field', function(){
-        var column = $(this).attr("id");
+        var limit = $(this).val();
         var page = $(this).attr("value");
+        var column = $(this).attr("id");
         var order = $(this).data("order");
-        var limit = $("#limitdata").val();
-        if(order == 'desc'){
-            arrow = ' ⇩'
-        }else{
-            arrow = ' ⇧'
-        }
         getdata(page,limit,column,order);
+       });
+
+       $(document).on('change', '#limitdata', function(){
+        limit = $(this).val();
+        page = $("#activepage").attr("value")
+        column = $("#fieldPass").val()
+        order = $("#sortPass").val();
+        console.log(limit);
+        console.log(page);
+        console.log(column);
+        console.log(order);
+       
+        getdata(1,limit,column,order);
        });
     </script>
 </body>
