@@ -226,7 +226,7 @@
     <script>
         // function of fetch all Data
         getdata();
-        function getdata(page=1, limit=5, column='id', order='asc') {
+        function getdata(page=1, limit=5, column='id', order='asc', gender='') {
             limit = $("#limitdata").val();
             var allrecords = "action";
             var num = 0;
@@ -243,6 +243,7 @@
                     "limit": limit,
                     "field": column,
                     "sort": order,
+                    "fgender": gender,
                     "allrecords": allrecords
                 },
                 success : function(response){
@@ -303,14 +304,18 @@
         limit = $(this).val();
         page = $("#activepage").attr("value")
         column = $("#fieldPass").val()
-        order = $("#sortPass").val();
-        console.log(limit);
-        console.log(page);
-        console.log(column);
-        console.log(order);
-       
+        order = $("#sortPass").val();       
         getdata(1,limit,column,order);
        });
+
+       $(document).on('change', '#fgender', function(){
+        gender = $(this).val();
+        limit = $("#limitdata").val();
+        page = $("#activepage").attr("value");
+        column = $("#fieldPass").val();
+        order = $("#sortPass").val();
+        getdata(1,limit,column,order,gender);
+    });
     </script>
 </body>
 </html>
